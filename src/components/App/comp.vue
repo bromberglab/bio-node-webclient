@@ -1,4 +1,3 @@
-
 <template src="./comp.html"></template>
 
 <script src="./comp.js"></script>

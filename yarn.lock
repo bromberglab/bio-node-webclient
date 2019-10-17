@@ -7105,6 +7105,28 @@ ret@~0.1.10:
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
 
+rete-area-plugin@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/rete-area-plugin/-/rete-area-plugin-0.2.1.tgz#0afe4581baf99c36c904d08e4f0a835ed6604d86"
+  integrity sha512-MOeQRmSC/gjkZIMo0fNuomzunRplALqd86V+jSzuhBYchCw0wshv2/iXu4xRxVZkw9r1HpZxlz9gLkbatCbXMw==
+
+rete-connection-plugin@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/rete-connection-plugin/-/rete-connection-plugin-0.8.3.tgz#4943d7096bd02d3a8f7ee4450e87c379ae8010a3"
+  integrity sha512-LNRRSmUzo/6irwUTapy6tLtGUv5vBzmz1ZaMB6/8kKOchqWJDsphuuJ/s9QOTt5tbqleyL7SNKE9/SBLQqVSjQ==
+
+rete-vue-render-plugin@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/rete-vue-render-plugin/-/rete-vue-render-plugin-0.5.0.tgz#c7467f6f931c5af76cd8f4fc2a0b244eef68ac0d"
+  integrity sha512-CEPp9jGDwgu+HVxwC6X/BLVeo3ZJOXnlBQ2GeI7xoszl9o47VHv9yFwCiGQBu2nGu7x4mYmVjsTZ9C10HZW0Ug==
+  dependencies:
+    vue "^2.6.6"
+
+rete@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/rete/-/rete-1.4.2.tgz#069dcf27d6d0b9e539a08cb9919114a97f5548d5"
+  integrity sha512-uiaHX7+Dne/zZLDFMp3r1cnseP0FjK3zlBSiIDoDXKT59StS9/lECaBz5XcXWnUhj33ZS8B3ZG45LRkgSaaptw==
+
 retry@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/retry/-/retry-0.12.0.tgz#1b42a6266a21f07421d1b0b54b7dc167b01c013b"
@@ -8388,7 +8410,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.6.10:
+vue@^2.6.10, vue@^2.6.6:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
