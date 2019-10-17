@@ -1,8 +1,8 @@
-import HelloWorld from "../HelloWorld/comp.vue";
+import GraphEditor from "../GraphEditor/comp.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    GraphEditor
   }
 };

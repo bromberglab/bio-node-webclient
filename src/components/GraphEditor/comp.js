@@ -21,20 +21,20 @@ class NumComponent extends Rete.Component {
 }
 
 export default {
-  name: "HelloWorld",
+  name: "GraphEditor",
   props: {
     msg: String
   },
   mounted: () => {
     const container = document.querySelector("#rete");
     const editor = new Rete.NodeEditor("demo@0.1.0", container);
+    const numComponent = new NumComponent();
+    const engine = new Rete.Engine("demo@0.1.0");
 
     editor.use(ConnectionPlugin);
     editor.use(VueRenderPlugin);
 
-    const numComponent = new NumComponent();
     editor.register(numComponent);
-    const engine = new Rete.Engine("demo@0.1.0");
     engine.register(numComponent);
 
     editor.on(
@@ -44,5 +44,31 @@ export default {
         await engine.process(editor.toJSON());
       }
     );
+
+    editor.fromJSON({
+      id: "demo@0.1.0",
+      nodes: {
+        "1": {
+          id: 1,
+          data: {
+            num: 2
+          },
+          inputs: {},
+          outputs: {
+            num: {
+              connections: [
+                {
+                  node: 3,
+                  input: "num1",
+                  data: {}
+                }
+              ]
+            }
+          },
+          position: [80, 200],
+          name: "Number"
+        }
+      }
+    });
   }
 };
