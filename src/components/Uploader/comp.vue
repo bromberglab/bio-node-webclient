@@ -13,6 +13,7 @@
 
 <script>
 const config = require("../../config");
+const uuid = require("uuid/v4");
 
 export default {
   data() {
@@ -21,7 +22,9 @@ export default {
         // https://github.com/simple-uploader/Uploader/tree/develop/samples/Node.js
         target: config.api_uri + "/upload/",
         uploadMethod: "PUT",
-        testChunks: false
+        testChunks: false,
+        generateUniqueIdentifier: uuid,
+        chunkSize: 20 * 1000 * 1000
       },
       attrs: {
         accept: "image/*"
