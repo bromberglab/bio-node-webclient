@@ -23,7 +23,9 @@ export default {
         target: config.api_uri + "/upload/",
         uploadMethod: "PUT",
         testChunks: false,
-        generateUniqueIdentifier: uuid,
+        generateUniqueIdentifier: name => {
+          return uuid();
+        },
         chunkSize: 20 * 1000 * 1000
       },
       attrs: {
