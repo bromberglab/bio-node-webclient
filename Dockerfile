@@ -1,0 +1,8 @@
+FROM alpine:3
+
+ENV APP_DIR=/app
+
+RUN mkdir $APP_DIR
+WORKDIR $APP_DIR
+
+ADD dist $APP_DIR/
