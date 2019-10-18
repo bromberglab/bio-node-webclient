@@ -6,11 +6,11 @@ const numSocket = new Rete.Socket("Number value");
 
 class NumComponent extends Rete.Component {
   constructor() {
-    super("Number");
+    super("Number 2");
   }
 
   builder(node) {
-    let out = new Rete.Output("num", "Number", numSocket);
+    let out = new Rete.Output("num", "Number_out", numSocket);
 
     node.addOutput(out);
   }
