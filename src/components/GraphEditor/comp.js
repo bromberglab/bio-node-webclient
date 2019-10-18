@@ -66,7 +66,7 @@ export default {
             }
           },
           position: [80, 200],
-          name: "Number"
+          name: "Number 2"
         }
       }
     });
