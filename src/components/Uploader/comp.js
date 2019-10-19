@@ -10,7 +10,7 @@ export default {
         uploadMethod: "PUT",
         testChunks: false,
         generateUniqueIdentifier: () => {
-          return this.uuid;
+          return this.uuid + "/" + uuid4();
         },
         chunkSize: 20 * 1000 * 1000
       },
