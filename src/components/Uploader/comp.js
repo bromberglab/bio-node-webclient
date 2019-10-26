@@ -17,5 +17,10 @@ export default {
       },
       uuid: uuid4()
     };
+  },
+  methods: {
+    fileUploaded() {
+      this.$emit("file-uploaded");
+    }
   }
 };

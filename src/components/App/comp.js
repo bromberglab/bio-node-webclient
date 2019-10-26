@@ -19,9 +19,14 @@ export default {
         window.location.href = "/";
       }
     });
-    axios
-      .get(config.api_uri + "/upload_tree")
-      .then(response => (this.files = response.data));
+    this.getTree();
+  },
+  methods: {
+    getTree() {
+      axios
+        .get(config.api_uri + "/upload_tree")
+        .then(response => (this.files = response.data));
+    }
   },
   data() {
     return {

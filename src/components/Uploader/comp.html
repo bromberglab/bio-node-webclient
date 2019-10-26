@@ -1,4 +1,8 @@
-<uploader :options="options" class="uploader-example">
+<uploader
+  :options="options"
+  class="uploader-example"
+  @file-success="fileUploaded"
+>
   <uploader-unsupport></uploader-unsupport>
   <uploader-drop>
     <p>Drop files here to upload or</p>
