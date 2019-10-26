@@ -12,7 +12,8 @@ export default {
         generateUniqueIdentifier: () => {
           return this.uuid + "/" + uuid4();
         },
-        chunkSize: 20 * 1000 * 1000
+        chunkSize: 20 * 1000 * 1000,
+        withCredentials: true
       },
       uuid: uuid4()
     };

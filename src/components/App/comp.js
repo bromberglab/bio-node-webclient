@@ -11,6 +11,7 @@ export default {
     Uploader
   },
   created: () => {
+    axios.defaults.withCredentials = true;
     axios.get(config.api_uri + "/check_auth").then(response => {
       if (response.data !== true) {
         window.location.href = "/";
