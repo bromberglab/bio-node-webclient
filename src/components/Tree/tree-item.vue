@@ -1,0 +1,46 @@
+<template>
+  <!-- item template -->
+  <div type="text/x-template" id="item-template">
+    <li>
+      <div :class="{ bold: isFolder }" @click="toggle">
+        {{ item.name }}
+        <span v-if="isFolder">[{{ isOpen ? "-" : "+" }}]</span>
+      </div>
+      <ul v-show="isOpen" v-if="isFolder">
+        <tree-item
+          class="item"
+          v-for="(child, index) in item.children"
+          :key="index"
+          :item="child"
+        ></tree-item>
+      </ul>
+    </li>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "tree-item",
+  template: "#item-template",
+  props: {
+    item: Object
+  },
+  data: () => {
+    return {
+      isOpen: false
+    };
+  },
+  computed: {
+    isFolder() {
+      return this.item.children && this.item.children.length;
+    }
+  },
+  methods: {
+    toggle() {
+      if (this.isFolder) {
+        this.isOpen = !this.isOpen;
+      }
+    }
+  }
+};
+</script>
