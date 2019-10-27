@@ -1,12 +1,18 @@
 <div id="app" class="full-height">
   <b-card no-body border-variant="transparent" class="full-height">
-    <b-tabs card class="full-height">
-      <b-tab title="Workflow" active>
-        <GraphEditor />
-      </b-tab>
-      <b-tab title="Upload">
-        <UploadPage />
-      </b-tab>
-    </b-tabs>
+    <b-card-header header-tag="nav">
+      <b-nav card-header tabs>
+        <b-nav-item to="/editor" exact exact-active-class="active"
+          >Editor</b-nav-item
+        >
+        <b-nav-item to="/upload" exact exact-active-class="active"
+          >Upload</b-nav-item
+        >
+      </b-nav>
+    </b-card-header>
+
+    <b-card-body class="text-center">
+      <router-view></router-view>
+    </b-card-body>
   </b-card>
 </div>
