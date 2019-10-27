@@ -6,11 +6,11 @@ const numSocket = new Rete.Socket("Number value");
 
 class NumComponent extends Rete.Component {
   constructor() {
-    super("Number 2");
+    super("Number");
   }
 
   builder(node) {
-    let out = new Rete.Output("num", "Number_out", numSocket);
+    let out = new Rete.Output("num", "Number", numSocket);
 
     node.addOutput(out);
   }
@@ -25,7 +25,7 @@ export default {
   props: {
     msg: String
   },
-  mounted() {
+  mounted: () => {
     const container = document.querySelector("#rete");
     const editor = new Rete.NodeEditor("demo@0.1.0", container);
     const numComponent = new NumComponent();
@@ -66,7 +66,7 @@ export default {
             }
           },
           position: [80, 200],
-          name: "Number 2"
+          name: "Number"
         }
       }
     });
