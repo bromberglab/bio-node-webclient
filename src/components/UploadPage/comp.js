@@ -3,12 +3,14 @@ const config = require("../../config");
 
 import Uploader from "../Uploader/comp.vue";
 import Tree from "../Tree/comp.vue";
+import UploadInputLine from "../UploadInputLine/comp.vue";
 
 export default {
   name: "app",
   components: {
     Uploader,
-    Tree
+    Tree,
+    UploadInputLine
   },
   created() {
     axios.defaults.withCredentials = true;
