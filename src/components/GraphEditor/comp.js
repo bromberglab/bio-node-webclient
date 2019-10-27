@@ -25,7 +25,7 @@ export default {
   props: {
     msg: String
   },
-  mounted: () => {
+  mounted() {
     const container = document.querySelector("#rete");
     const editor = new Rete.NodeEditor("demo@0.1.0", container);
     const numComponent = new NumComponent();

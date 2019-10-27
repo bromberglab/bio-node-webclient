@@ -5,12 +5,13 @@
       <div :class="{ bold: isFolder }" @click="toggle">
         {{ item.name }}
         <span v-if="isFolder">[{{ isOpen ? "-" : "+" }}]</span>
+        <span v-if="isEmptyFolder">(empty)</span>
       </div>
       <ul v-show="isOpen" v-if="isFolder">
         <tree-item
           class="item"
-          v-for="(child, index) in item.children"
-          :key="index"
+          v-for="(child, i) in item.children"
+          :key="i"
           :item="child"
         ></tree-item>
       </ul>
@@ -33,6 +34,9 @@ export default {
   computed: {
     isFolder() {
       return this.item.children && this.item.children.length;
+    },
+    isEmptyFolder() {
+      return this.item.children && this.item.children.length === 0;
     }
   },
   methods: {

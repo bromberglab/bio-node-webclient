@@ -1,4 +1,12 @@
 <div id="app">
-  <Uploader @file-uploaded="getTree" />
-  <Tree :files="files" />
+  <b-card no-body border-variant="transparent">
+    <b-tabs card>
+      <b-tab title="Workflow" active>
+        <GraphEditor />
+      </b-tab>
+      <b-tab title="Upload">
+        <UploadPage />
+      </b-tab>
+    </b-tabs>
+  </b-card>
 </div>

@@ -8,7 +8,7 @@ export default {
   components: { TreeItem },
   data() {
     return {
-      treeData: { name: "Files", children: this.files }
+      treeData: { name: "Uploaded Files:", children: this.files }
     };
   },
   props: { files: Array },
