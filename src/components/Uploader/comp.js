@@ -1,4 +1,4 @@
-const config = require("../../config");
+const config = require("src/config");
 const uuid4 = require("uuid/v4");
 
 export default {

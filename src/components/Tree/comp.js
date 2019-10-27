@@ -1,7 +1,4 @@
 import TreeItem from "./tree-item.vue";
-import { AST_PropAccess } from "terser";
-
-const config = require("../../config");
 
 // boot up the demo
 export default {

@@ -1,5 +1,5 @@
 const axios = require("axios");
-const config = require("../../config");
+const config = require("src/config");
 
 import Uploader from "../Uploader/comp.vue";
 import Tree from "../Tree/comp.vue";

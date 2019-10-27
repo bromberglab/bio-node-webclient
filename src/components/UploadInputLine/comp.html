@@ -1,14 +1,26 @@
 <div>
-  <b-input-group>
-    <b-input-group-prepend>
-      <b-button variant="outline-info">Button</b-button>
-    </b-input-group-prepend>
-
-    <b-form-input type="number" min="0.00"></b-form-input>
+  <b-input-group prepend="File Type">
+    <b-form-input
+      type="text"
+      placeholder="(required)"
+      :value="fileType"
+      @input="update"
+    ></b-form-input>
 
     <b-input-group-append>
-      <b-button variant="outline-secondary">Button</b-button>
-      <b-button variant="outline-secondary">Button</b-button>
+      <b-dropdown :text="selectedJobCount ? selectedJobCount.text : ''">
+        <b-dropdown-item
+          v-for="option in jobCounts"
+          :value="option.value"
+          @click="selectedJobCount = option"
+          :key="option.value"
+        >
+          {{ option.text }}
+        </b-dropdown-item>
+      </b-dropdown>
+      <b-button variant="success" @click="finishUpload()"
+        >Finish Upload</b-button
+      >
     </b-input-group-append>
   </b-input-group>
 </div>
