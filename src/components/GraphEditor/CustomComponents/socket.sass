@@ -1,19 +1,7 @@
-<template lang="html">
-  <div
-    class="socket"
-    :class="[type, socket.name] | kebab"
-    :title="socket.name"
-  ></div>
-</template>
 
-<script>
-export default {
-  props: ["type", "socket"]
-};
-</script>
-
-<style lang="sass" scoped>
 @import "src/../node_modules/rete-vue-render-plugin/src/vars.sass"
+
+$socket-color: #ddd
 
 .socket
   display: inline-block
@@ -35,4 +23,3 @@ export default {
     margin-right: - $socket-size / 2
   &.input
     margin-left: - $socket-size / 2
-</style>

@@ -32,7 +32,7 @@
     .node {
       border-color: transparent;
       &.selected {
-        border-color: transparent;
+        opacity: 0.9;
       }
     }
   }

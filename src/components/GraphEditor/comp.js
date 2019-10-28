@@ -5,7 +5,7 @@ import { Mutex } from "async-mutex";
 import DockPlugin from "rete-dock-plugin";
 import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 import Api from "src/services/api.js";
-import CustomNodeComponent from "./custom-node.vue";
+import CustomNodeComponent from "./CustomComponents/node.vue";
 
 const mutex = new Mutex();
 
