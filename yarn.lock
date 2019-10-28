@@ -7197,6 +7197,11 @@ rete-connection-plugin@^0.8.3:
   resolved "https://registry.yarnpkg.com/rete-connection-plugin/-/rete-connection-plugin-0.8.3.tgz#4943d7096bd02d3a8f7ee4450e87c379ae8010a3"
   integrity sha512-LNRRSmUzo/6irwUTapy6tLtGUv5vBzmz1ZaMB6/8kKOchqWJDsphuuJ/s9QOTt5tbqleyL7SNKE9/SBLQqVSjQ==
 
+rete-dock-plugin@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/rete-dock-plugin/-/rete-dock-plugin-0.2.1.tgz#d5537568eac539236bbe52bea3491fa85b1b3715"
+  integrity sha512-o3KGrv7HA2AcnGL/K1VfwZ+yUgmE/wejLGsvhFi6nwJnf8IdiMiEvmISZkiER6lgc/tGmh2Ptyb/cLcCMgFkVQ==
+
 rete-vue-render-plugin@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/rete-vue-render-plugin/-/rete-vue-render-plugin-0.5.0.tgz#c7467f6f931c5af76cd8f4fc2a0b244eef68ac0d"
@@ -8492,6 +8497,11 @@ vue-simple-uploader@^0.7.2:
   integrity sha512-IjNNEQB6vbwRyemvlcbLz/0BkV/fNSJOMz14i+DDtA3TKW1qUpqRiYCjEaaGjdZR2GTcvcYCxAGuhBv5GRy63w==
   dependencies:
     simple-uploader.js "^0.5.2"
+
+vue-spinner@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue-spinner/-/vue-spinner-1.0.3.tgz#eecd3f79f63a815b690e9d54b199ab65be695499"
+  integrity sha512-Phh6QC/Bh80ZE/0SH9ADw4irbRGwFK6VZsTksPHpPm16xga2OXwNC2nI7SEPnndUZP+Lgu1wu+pbH6i6+5siBQ==
 
 vue-style-loader@^4.1.0:
   version "4.1.2"
