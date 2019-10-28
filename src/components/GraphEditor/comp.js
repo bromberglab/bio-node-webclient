@@ -1,6 +1,9 @@
 import Rete from "rete";
 import ConnectionPlugin from "rete-connection-plugin";
 import VueRenderPlugin from "rete-vue-render-plugin";
+import { Mutex } from "async-mutex";
+
+const mutex = new Mutex();
 
 const numSocket = new Rete.Socket("Number value");
 
@@ -11,6 +14,7 @@ class NumComponent extends Rete.Component {
 
   builder(node) {
     let out = new Rete.Output("num", "Number", numSocket);
+    new Rete.Output();
 
     node.addOutput(out);
   }
@@ -34,16 +38,8 @@ export default {
     editor.use(ConnectionPlugin);
     editor.use(VueRenderPlugin);
 
-    editor.register(numComponent);
     engine.register(numComponent);
-
-    editor.on(
-      "process nodecreated noderemoved connectioncreated connectionremoved",
-      async () => {
-        await engine.abort();
-        await engine.process(editor.toJSON());
-      }
-    );
+    editor.register(numComponent);
 
     editor.fromJSON({
       id: "demo@0.1.0",
@@ -56,19 +52,37 @@ export default {
           inputs: {},
           outputs: {
             num: {
-              connections: [
-                {
-                  node: 3,
-                  input: "num1",
-                  data: {}
-                }
-              ]
+              connections: []
             }
           },
           position: [80, 200],
           name: "Number"
+        },
+        "2": {
+          id: 2,
+          data: {
+            num: 2
+          },
+          inputs: {},
+          outputs: {
+            num: {
+              connections: []
+            }
+          },
+          position: [180, 200],
+          name: "Number"
         }
       }
     });
+
+    editor.on(
+      "process nodecreated noderemoved connectioncreated connectionremoved",
+      async () => {
+        mutex.runExclusive(async () => {
+          await engine.abort();
+          await engine.process(editor.toJSON());
+        });
+      }
+    );
   }
 };

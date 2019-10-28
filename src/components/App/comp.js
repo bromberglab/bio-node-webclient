@@ -33,7 +33,7 @@ export default {
   name: "app",
   router,
   methods: {
-    dragOn(e) {
+    dragOn() {
       this.dragActive = true;
     },
     dragOff(e) {

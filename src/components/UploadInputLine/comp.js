@@ -30,7 +30,7 @@ export default {
       });
     },
     finishUpload() {
-      this.updateUpload(true).then(r => {
+      this.updateUpload(true).then(() => {
         window.location.reload();
       });
     }

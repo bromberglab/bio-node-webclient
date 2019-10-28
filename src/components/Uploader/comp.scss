@@ -18,7 +18,7 @@
 }
 
 .uploader-drop {
-  // disable dragover highlight
+  // disable default dragover highlight
   position: relative;
   padding: 10px;
   overflow: hidden;
@@ -26,9 +26,9 @@
   background-color: #f5f5f5;
 }
 
-.dragActive {
+.drag-active {
   .uploader-drop {
-    // disable dragover highlight
+    // custom dragover highlight
     position: relative;
     padding: 10px;
     overflow: hidden;
