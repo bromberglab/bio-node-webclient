@@ -1,5 +1,5 @@
 <div class="node" :class="[selected(), node.name] | kebab">
-  <div class="title">{{ node.name }}</div>
+  <div class="title">{{ node.data.displayName }}</div>
   <!-- Outputs-->
   <div class="output" v-for="output in outputs()" :key="output.key">
     <div class="output-title">{{ output.name }}</div>
@@ -27,5 +27,8 @@
       v-show="input.showControl()"
       v-control="input.control"
     ></div>
+  </div>
+  <div class="settings" @click="openSettings">
+    <font-awesome-icon icon="cog" />
   </div>
 </div>

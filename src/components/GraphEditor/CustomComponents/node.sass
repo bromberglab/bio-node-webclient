@@ -1,7 +1,8 @@
 
 @import "src/../node_modules/rete-vue-render-plugin/src/vars.sass"
+@import "src/colors"
 
-$node-color: #888
+$node-color: $palette-3-hex
 
 .node
   background: $node-color
@@ -40,3 +41,10 @@ $node-color: #888
     display: inline-block
   .control
     padding: $socket-margin $socket-size/2 + $socket-margin
+  .settings
+    position: absolute
+    top: 0
+    right: 0
+    transform: translate(40%, -40%)
+    font-size: 1.8rem
+    color: $palette-1-hex

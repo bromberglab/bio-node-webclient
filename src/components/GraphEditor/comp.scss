@@ -1,3 +1,5 @@
+@import "src/colors";
+
 .rete-editor {
   height: 100%;
 
@@ -17,6 +19,9 @@
     vertical-align: top;
     transform: scale(0.8);
     transform-origin: 50% 0;
+    .settings {
+      display: none;
+    }
   }
 
   .rete-container {
@@ -25,6 +30,11 @@
     .node-editor {
       width: 100%;
       height: 100%;
+      .connection {
+        path {
+          stroke: $palette-5-hex;
+        }
+      }
     }
   }
   .dock,

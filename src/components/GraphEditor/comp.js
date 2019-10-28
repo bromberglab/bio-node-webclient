@@ -6,6 +6,7 @@ import DockPlugin from "rete-dock-plugin";
 import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 import Api from "src/services/api.js";
 import CustomNodeComponent from "./CustomComponents/node.vue";
+import NodeSettings from "../NodeSettings/comp.vue";
 
 const mutex = new Mutex();
 
@@ -24,9 +25,8 @@ export default {
     const editor = new Rete.NodeEditor("demo@0.1.0", container);
     const engine = new Rete.Engine("demo@0.1.0");
 
-    const numSocket = new Rete.Socket("Number value");
-
     let classes = Array();
+    let sockets = {};
     const renderOptions = {
       component: CustomNodeComponent
     };
@@ -41,16 +41,19 @@ export default {
       r.data
         .map(v => v.name)
         .forEach(v => {
+          sockets[v] = new Rete.Socket(v);
           classes.push(
             class extends Rete.Component {
               constructor() {
-                super(`From "${v}" Dataset`);
+                super("from_data/" + v);
               }
 
               builder(node) {
-                let out = new Rete.Output(1, v, numSocket);
+                let out = new Rete.Output(1, v, sockets[v]);
 
                 node.addOutput(out);
+                node.data.id = "from_data/" + v;
+                node.data.displayName = "From Data Storage";
               }
 
               worker(node, inputs, outputs) {
@@ -61,13 +64,15 @@ export default {
           classes.push(
             class extends Rete.Component {
               constructor() {
-                super(`To "${v}" Dataset`);
+                super("to_data/" + v);
               }
 
               builder(node) {
-                let inp = new Rete.Input(1, v, numSocket);
+                let inp = new Rete.Input(1, v, sockets[v]);
 
                 node.addInput(inp);
+                node.data.id = "to_data/" + v;
+                node.data.displayName = "To Data Storage";
               }
 
               worker(node, inputs) {
@@ -95,6 +100,7 @@ export default {
     );
   },
   components: {
-    "vue-spinner": ScaleLoader
+    "vue-spinner": ScaleLoader,
+    NodeSettings
   }
 };

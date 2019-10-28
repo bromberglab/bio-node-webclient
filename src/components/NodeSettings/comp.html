@@ -1,0 +1,19 @@
+<b-modal
+  id="node-settings-modal"
+  title="BootstrapVue"
+  :cancel-disabled="true"
+  @hidden="dismiss"
+>
+  <p class="my-4" v-if="node">
+    Settings be here.
+    {{ node.node.data.id }}
+  </p>
+
+  <template v-slot:modal-footer>
+    <div class="w-100">
+      <b-button variant="primary" class="float-right" @click="dismiss">
+        Close
+      </b-button>
+    </div>
+  </template>
+</b-modal>
