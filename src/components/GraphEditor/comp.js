@@ -4,9 +4,9 @@ import VueRenderPlugin from "rete-vue-render-plugin";
 import { Mutex } from "async-mutex";
 import DockPlugin from "rete-dock-plugin";
 import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
-import Api from "src/services/api.js";
 import CustomNodeComponent from "./CustomComponents/node.vue";
 import NodeSettings from "../NodeSettings/comp.vue";
+import Api from "src/services/api";
 
 const mutex = new Mutex();
 
@@ -17,12 +17,29 @@ export default {
   },
   data() {
     return {
-      loading: true
+      loading: true,
+      saveName: "My Workflow",
+      editor: null
     };
+  },
+  methods: {
+    saveFlow() {
+      Api.post("workflow_storage", {
+        name: this.saveName,
+        data: this.editor.toJSON()
+      });
+    },
+    loadFlow() {
+      Api.get("workflow_storage", {
+        name: this.saveName
+      }).then(r => {
+        this.editor.fromJSON(r.data);
+      });
+    }
   },
   mounted() {
     const container = document.querySelector(".rete-editor .node-editor");
-    const editor = new Rete.NodeEditor("demo@0.1.0", container);
+    this.editor = new Rete.NodeEditor("demo@0.1.0", container);
     const engine = new Rete.Engine("demo@0.1.0");
 
     let classes = Array();
@@ -30,9 +47,9 @@ export default {
     const renderOptions = {
       component: CustomNodeComponent
     };
-    editor.use(ConnectionPlugin);
-    editor.use(VueRenderPlugin, renderOptions);
-    editor.use(DockPlugin, {
+    this.editor.use(ConnectionPlugin);
+    this.editor.use(VueRenderPlugin, renderOptions);
+    this.editor.use(DockPlugin, {
       container: document.querySelector(".rete-editor .dock"),
       plugins: [[VueRenderPlugin, renderOptions]]
     });
@@ -84,17 +101,17 @@ export default {
       classes.forEach(SomeClass => {
         const numComponent = new SomeClass();
         engine.register(numComponent);
-        editor.register(numComponent);
+        this.editor.register(numComponent);
       });
       this.loading = false;
     });
 
-    editor.on(
+    this.editor.on(
       "process nodecreated noderemoved connectioncreated connectionremoved",
       async () => {
         mutex.runExclusive(async () => {
           await engine.abort();
-          // console.log(editor.toJSON());
+          await engine.process(this.editor.toJSON());
         });
       }
     );

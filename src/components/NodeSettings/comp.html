@@ -1,13 +1,12 @@
 <b-modal
   id="node-settings-modal"
-  title="BootstrapVue"
+  title="Settings"
   :cancel-disabled="true"
   @hidden="dismiss"
 >
-  <p class="my-4" v-if="node">
-    Settings be here.
-    {{ node.node.data.id }}
-  </p>
+  <div v-if="node">
+    <v-jsoneditor v-model="jsonEditor" :plus="false" height="400px" @error="onError" />
+  </div>
 
   <template v-slot:modal-footer>
     <div class="w-100">

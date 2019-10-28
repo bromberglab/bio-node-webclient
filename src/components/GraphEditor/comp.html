@@ -5,4 +5,23 @@
     <div class="node-editor"></div>
   </div>
   <div class="dock"></div>
+  <div class="save-load">
+  <b-input-group>
+    <b-form-input
+      type="text"
+      placeholder="Save Name"
+      :model="saveName"
+      :value="saveName"
+    ></b-form-input>
+
+    <b-input-group-append>
+      <b-button variant="primary" @click="loadFlow"
+        >Load</b-button
+      >
+      <b-button variant="success" @click="saveFlow"
+        >Save</b-button
+      >
+    </b-input-group-append>
+  </b-input-group>
+  </div>
 </div>

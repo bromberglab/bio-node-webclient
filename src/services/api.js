@@ -10,7 +10,7 @@ export default {
     return method(this.endpointToUrl(endpoint), data);
   },
   get(endpoint, data) {
-    return this.callEndpoint(axios.get, endpoint, data);
+    return this.callEndpoint(axios.get, endpoint, { params: data });
   },
   post(endpoint, data) {
     return this.callEndpoint(axios.post, endpoint, data);

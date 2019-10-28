@@ -1,6 +1,6 @@
 const debounce = require("debounce");
-const axios = require("axios");
 const config = require("src/config");
+import Api from "src/services/api";
 
 const jobCounts = [
   {
@@ -23,7 +23,7 @@ export default {
       this.fileType = value;
     }, config.debounceDefault),
     updateUpload(isFinished) {
-      return axios.post(config.api_uri + "/my_upload/", {
+      return Api.post("my_upload", {
         file_type: this.fileType,
         job_count: this.selectedJobCount.value,
         is_finished: isFinished || false
@@ -36,7 +36,7 @@ export default {
     }
   },
   mounted() {
-    axios.get(config.api_uri + "/my_upload/").then(response => {
+    Api.get("my_upload").then(response => {
       this.fileType = response.data.file_type;
       this.selectedJobCount = jobCounts.filter(
         v => v.value == response.data.job_count

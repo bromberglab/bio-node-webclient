@@ -46,4 +46,14 @@
       }
     }
   }
+
+  position: relative;
+  .save-load {
+    text-align: left;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 50%;
+    max-width: 330px;
+  }
 }
