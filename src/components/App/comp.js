@@ -1,6 +1,7 @@
 import UploadPage from "../UploadPage/comp.vue";
 import GraphEditor from "../GraphEditor/comp.vue";
 import VueRouter from "vue-router";
+import { Events } from "src/events.js";
 
 const routes = [
   { path: "editor", component: GraphEditor },
@@ -30,5 +31,23 @@ const router = new VueRouter({
 
 export default {
   name: "app",
-  router
+  router,
+  methods: {
+    dragOn(e) {
+      this.dragActive = true;
+    },
+    dragOff(e) {
+      if (e.fromElement === null) this.dragActive = false;
+    }
+  },
+  data() {
+    return {
+      dragActive: false
+    };
+  },
+  watch: {
+    dragActive(v) {
+      Events.$emit("drag-active", v);
+    }
+  }
 };

@@ -16,3 +16,23 @@
     overflow-y: auto;
   }
 }
+
+.uploader-drop {
+  // disable dragover highlight
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px dashed #ccc;
+  background-color: #f5f5f5;
+}
+
+.dragActive {
+  .uploader-drop {
+    // disable dragover highlight
+    position: relative;
+    padding: 10px;
+    overflow: hidden;
+    border: 2px dashed green;
+    background-color: #f5f5f5;
+  }
+}

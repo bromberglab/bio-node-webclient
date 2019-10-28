@@ -1,5 +1,6 @@
 const config = require("src/config");
 const uuid4 = require("uuid/v4");
+import { Events } from "src/events.js";
 
 export default {
   data() {
@@ -15,12 +16,18 @@ export default {
         chunkSize: 20 * 1000 * 1000,
         withCredentials: true
       },
-      uuid: uuid4()
+      uuid: uuid4(),
+      dragActive: false
     };
   },
   methods: {
     fileUploaded() {
       this.$emit("file-uploaded");
     }
+  },
+  mounted() {
+    Events.$on("drag-active", v => {
+      this.dragActive = v;
+    });
   }
 };
