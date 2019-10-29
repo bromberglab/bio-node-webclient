@@ -8,7 +8,6 @@
   flex-direction: column;
   height: 100%;
   .dock {
-    height: 100px;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
@@ -25,7 +24,7 @@
   }
 
   .rete-container {
-    flex: 1;
+    flex: 1 1 auto;
     overflow: hidden;
     .node-editor {
       width: 100%;
