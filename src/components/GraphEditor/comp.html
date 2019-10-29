@@ -14,11 +14,14 @@
     ></b-form-input>
 
     <b-input-group-append>
-      <b-button variant="primary" @click="loadFlow"
+      <b-button variant="outline-primary" @click="loadFlow"
         >Load</b-button
       >
-      <b-button variant="success" @click="saveFlow"
+      <b-button variant="outline-success" @click="saveFlow"
         >Save</b-button
+      >
+      <b-button variant="success" @click="runFlow"
+        >Run</b-button
       >
     </b-input-group-append>
   </b-input-group>

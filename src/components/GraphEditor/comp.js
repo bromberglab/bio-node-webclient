@@ -64,6 +64,12 @@ export default {
         data: this.editor.toJSON()
       });
     },
+    runFlow() {
+      Api.post("workflow_run", {
+        name: this.saveName,
+        data: this.editor.toJSON()
+      });
+    },
     loadFlow() {
       Api.get("workflow_storage", {
         name: this.saveName
