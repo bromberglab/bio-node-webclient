@@ -1,4 +1,4 @@
-@import "src/colors";
+@import "src/globals";
 
 .rete-editor {
   height: 100%;
@@ -16,7 +16,8 @@
   .dock-item {
     display: inline-block;
     vertical-align: top;
-    transform: scale(0.8);
+    font-size: 0.8em;
+    margin: 0.3em 1em;
     transform-origin: 50% 0;
     .settings {
       display: none;

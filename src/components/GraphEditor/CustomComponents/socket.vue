@@ -3,4 +3,4 @@
 <script src="./socket.js"></script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="sass" scoped src="./socket.sass"></style>
+<style lang="scss" scoped src="./socket.scss"></style>

@@ -1,7 +1,7 @@
 <div class="node" :class="[selected(), node.name] | kebab">
   <div class="title">{{ node.data.displayName }}</div>
   <!-- Outputs-->
-  <div class="output" v-for="output in outputs()" :key="output.key">
+  <div class="output" v-for="(output, i) in outputs()" :key="node.id + '/o/' + i">
     <div class="output-title">{{ output.name }}</div>
     <Socket
       v-socket:output="output"
@@ -14,10 +14,10 @@
     class="control"
     v-for="(control, i) in controls()"
     v-control="control"
-    :key="i"
+    :key="node.id + '/c/' + i"
   ></div>
   <!-- Inputs-->
-  <div class="input" v-for="input in inputs()" :key="input.key">
+  <div class="input" v-for="(input, i) in inputs()" :key="node.id + '/i/' + i">
     <Socket v-socket:input="input" type="input" :socket="input.socket"></Socket>
     <div class="input-title" v-show="!input.showControl()">
       {{ input.name }}
