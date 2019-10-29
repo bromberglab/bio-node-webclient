@@ -96,6 +96,7 @@ export default {
                   node.addOutput(out);
                   node.data.id = "from_data/" + v;
                   node.data.displayName = "From Data Storage";
+                  node.data.data_id = node.data.data_id || "<required>";
                 }
 
                 worker(node, inputs, outputs) {
@@ -116,6 +117,7 @@ export default {
                   node.addInput(inp);
                   node.data.id = "to_data/" + v;
                   node.data.displayName = "To Data Storage";
+                  node.data.data_id = node.data.data_id || "<required>";
                 }
 
                 worker(node, inputs) {
@@ -153,8 +155,7 @@ export default {
                 });
 
                 node.data.id = "node/" + image.name;
-                node.data.displayName =
-                  image.name.split("/").slice(-1)[0] + " Node";
+                node.data.displayName = image.name.split("/").slice(-1)[0];
               }
 
               worker(node, inputs, outputs) {
