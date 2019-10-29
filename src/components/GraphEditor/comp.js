@@ -85,7 +85,7 @@ export default {
                 }
 
                 builder(node) {
-                  let out = new Rete.Output(1, v, sockets[v]);
+                  let out = new Rete.Output("o/" + 1, v, sockets[v]);
 
                   node.addOutput(out);
                   node.data.id = "from_data/" + v;
@@ -105,7 +105,7 @@ export default {
                 }
 
                 builder(node) {
-                  let inp = new Rete.Input(1, v, sockets[v]);
+                  let inp = new Rete.Input("i/" + 1, v, sockets[v]);
 
                   node.addInput(inp);
                   node.data.id = "to_data/" + v;
@@ -135,15 +135,15 @@ export default {
               builder(node) {
                 node.data.image = image;
 
-                let j = 1;
+                let j = 0;
                 image.inputs.forEach(v => {
                   sockets[v] = sockets[v] || new CustomSocket(v);
-                  node.addInput(new Rete.Input(j++, v, sockets[v]));
+                  node.addInput(new Rete.Input("i/" + ++j, v, sockets[v]));
                 });
                 j = 0;
                 image.outputs.forEach(v => {
                   sockets[v] = sockets[v] || new CustomSocket(v);
-                  node.addOutput(new Rete.Output(j++, v, sockets[v]));
+                  node.addOutput(new Rete.Output("o/" + ++j, v, sockets[v]));
                 });
 
                 node.data.id = "node/" + image.name;
