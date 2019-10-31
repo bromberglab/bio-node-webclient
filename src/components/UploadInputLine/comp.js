@@ -19,13 +19,17 @@ const jobCounts = [
 
 export default {
   methods: {
-    update: debounce(function(value) {
+    updateName: debounce(function(value) {
+      this.uploadName = value;
+    }, config.debounceDefault),
+    updateType: debounce(function(value) {
       this.fileType = value;
     }, config.debounceDefault),
     updateUpload(isFinished) {
       return Api.post("my_upload", {
         file_type: this.fileType,
         job_count: this.selectedJobCount.value,
+        name: this.uploadName,
         is_finished: isFinished || false
       });
     },
@@ -38,6 +42,7 @@ export default {
   mounted() {
     Api.get("my_upload").then(response => {
       this.fileType = response.data.file_type;
+      this.uploadName = response.data.display_name;
       this.selectedJobCount = jobCounts.filter(
         v => v.value == response.data.job_count
       )[0];
@@ -51,12 +56,16 @@ export default {
         }
       ],
       fileType: null,
+      uploadName: null,
       jobCounts,
       selectedJobCount: null
     };
   },
   watch: {
     fileType(newVal, oldVal) {
+      if (oldVal !== null && oldVal !== newVal) this.updateUpload();
+    },
+    uploadName(newVal, oldVal) {
       if (oldVal !== null && oldVal !== newVal) this.updateUpload();
     },
     selectedJobCount(newVal, oldVal) {

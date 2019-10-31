@@ -1,10 +1,18 @@
 <div>
-  <b-input-group prepend="File Type">
+  <b-input-group class="type">
     <b-form-input
       type="text"
       placeholder="(required)"
       :value="fileType"
-      @input="update"
+      @input="updateType"
+    ></b-form-input>
+  </b-input-group>
+  <b-input-group prepend="/" class="name">
+    <b-form-input
+      type="text"
+      placeholder="(required)"
+      :value="uploadName"
+      @input="updateName"
     ></b-form-input>
 
     <b-input-group-append>
