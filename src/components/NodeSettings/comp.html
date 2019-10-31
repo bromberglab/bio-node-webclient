@@ -5,7 +5,7 @@
   @hidden="dismiss"
 >
   <div v-if="node">
-    <v-jsoneditor v-model="jsonEditor" :plus="false" height="400px" @error="onError" />
+    <v-jsoneditor @input="jsonEditorChanged" :plus="false" height="400px" @error="onError" :value="jsonRead" />
   </div>
 
   <template v-slot:modal-footer>

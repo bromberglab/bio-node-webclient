@@ -19,18 +19,22 @@ export default {
     },
     onError() {
       return;
+    },
+    jsonEditorChanged(v) {
+      this.jsonEditor = v;
     }
   },
   data() {
     return {
       node: null,
-      jsonEditor: {}
+      jsonEditor: {},
+      jsonRead: {}
     };
   },
   mounted() {
     Events.$on("open-node-settings", v => {
       if (!v || !v.node.data) return;
-      this.jsonEditor = v.node.data;
+      this.jsonEditor = this.jsonRead = v.node.data;
       this.node = v;
     });
   },
