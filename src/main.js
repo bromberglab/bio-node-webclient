@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import VJsoneditor from "v-jsoneditor";
+import VueSSE from "vue-sse";
+import ServerEvents from "src/services/server-events";
 
 import "./custom.scss";
 
@@ -15,6 +17,7 @@ Vue.use(uploader);
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.use(VJsoneditor);
+Vue.use(VueSSE);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 library.add(fas);
@@ -22,3 +25,5 @@ library.add(fas);
 new Vue({
   render: h => h(App)
 }).$mount("#app");
+
+ServerEvents.listen();
