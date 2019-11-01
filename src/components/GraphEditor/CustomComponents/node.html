@@ -1,5 +1,8 @@
 <div class="node" :class="[selected(), node.name] | kebab">
-  <div class="title">{{ node.data.displayName }}</div>
+  <div class="title">
+    {{ node.data.displayName }}
+    <font-awesome-icon icon="download" class="download" @click="download" v-if='node.data.data_name' />
+  </div>
   <!-- Outputs-->
   <div class="output" v-for="(output, i) in outputs()" :key="node.id + '/o/' + i">
     <div class="output-title">{{ output.name }}</div>

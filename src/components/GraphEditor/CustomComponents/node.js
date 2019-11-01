@@ -1,6 +1,7 @@
 import mixin from "rete-vue-render-plugin/src/mixin";
 import Socket from "./socket.vue";
 import { Events } from "src/events.js";
+import Api from "src/services/api";
 
 export default {
   mixins: [mixin],
@@ -10,6 +11,13 @@ export default {
   methods: {
     openSettings() {
       Events.$emit("open-node-settings", this);
+    },
+    download() {
+      Api.post("create_download", {
+        name: this.node.data.data_name
+      }).then(r => {
+        window.open(r.data.url);
+      });
     }
   },
   mounted() {
