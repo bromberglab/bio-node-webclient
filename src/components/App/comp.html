@@ -1,4 +1,5 @@
 <div id="app" class="full-height" @dragenter="dragOn" @dragleave="dragOff">
+  <vue-spinner :loading="loading > 0" class="main-spinner"></vue-spinner>
   <b-card no-body border-variant="transparent" class="full-height">
     <b-card-header header-tag="nav">
       <b-nav card-header tabs>

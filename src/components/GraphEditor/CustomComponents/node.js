@@ -11,5 +11,21 @@ export default {
     openSettings() {
       Events.$emit("open-node-settings", this);
     }
+  },
+  mounted() {
+    Events.$on("server-event/status-change", d => {
+      // important: == not ===
+      if (d.type == "job" && d.old_id == this.node.id) {
+        this.running = !d.finished;
+      }
+    });
+    Events.$on("run-all", () => {
+      this.running = true;
+    });
+  },
+  data() {
+    return {
+      running: false
+    };
   }
 };

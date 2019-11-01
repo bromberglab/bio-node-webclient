@@ -28,7 +28,10 @@
       v-control="input.control"
     ></div>
   </div>
-  <div class="settings" @click="openSettings">
+  <div class="settings" @click="openSettings" v-if="!running">
     <font-awesome-icon icon="cog" />
+  </div>
+  <div class="settings" v-if="running">
+    <font-awesome-icon icon="cog" spin />
   </div>
 </div>

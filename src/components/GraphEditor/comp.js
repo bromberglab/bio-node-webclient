@@ -3,10 +3,10 @@ import ConnectionPlugin from "rete-connection-plugin";
 import VueRenderPlugin from "rete-vue-render-plugin";
 import { Mutex } from "async-mutex";
 import DockPlugin from "rete-dock-plugin";
-import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 import CustomNodeComponent from "./CustomComponents/node.vue";
 import NodeSettings from "../NodeSettings/comp.vue";
 import Api from "src/services/api";
+import { Events } from "src/events.js";
 
 const mutex = new Mutex();
 
@@ -49,7 +49,6 @@ export default {
   },
   data() {
     return {
-      loading: true,
       saveName: "My Workflow",
       editor: null,
       classes: Array(),
@@ -68,6 +67,8 @@ export default {
       Api.post("workflow_run", {
         name: this.saveName,
         data: this.editor.toJSON()
+      }).then(() => {
+        Events.$emit("run-all");
       });
     },
     loadFlow() {
@@ -170,11 +171,12 @@ export default {
           this.engine.register(numComponent);
           this.editor.register(numComponent);
         });
-        this.loading = false;
+        Events.$emit("stop-loading");
       });
     }
   },
   mounted() {
+    Events.$emit("start-loading");
     this.editor = new Rete.NodeEditor(
       "demo@0.1.0",
       document.querySelector(".rete-editor .node-editor")
@@ -204,7 +206,6 @@ export default {
     );
   },
   components: {
-    "vue-spinner": ScaleLoader,
     NodeSettings
   }
 };

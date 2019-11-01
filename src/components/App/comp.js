@@ -3,6 +3,7 @@ import GraphEditor from "../GraphEditor/comp.vue";
 import VueRouter from "vue-router";
 import { Events } from "src/events.js";
 import Api from "src/services/api";
+import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 
 const routes = [
   { path: "editor", component: GraphEditor },
@@ -43,6 +44,7 @@ export default {
   },
   data() {
     return {
+      loading: 0,
       dragActive: false
     };
   },
@@ -51,11 +53,22 @@ export default {
       Events.$emit("drag-active", v);
     }
   },
+  created() {
+    Events.$on("start-loading", () => {
+      this.loading++;
+    });
+    Events.$on("stop-loading", () => {
+      if (this.loading > 0) this.loading--;
+    });
+  },
   mounted() {
     Api.get("check_auth").then(response => {
       if (response.data !== true) {
         window.location.href = "/";
       }
     });
+  },
+  components: {
+    "vue-spinner": ScaleLoader
   }
 };
