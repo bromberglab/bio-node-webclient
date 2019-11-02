@@ -1,4 +1,5 @@
 import { Events } from "src/events.js";
+import Api from "src/services/api";
 
 // boot up the demo
 export default {
@@ -22,13 +23,41 @@ export default {
     },
     jsonEditorChanged(v) {
       this.jsonEditor = v;
+    },
+    render() {
+      this.nodeMode.input = this.node.node.data.id.startsWith("from_data/");
+      this.nodeMode.output = this.node.node.data.id.startsWith("to_data/");
+      this.nodeMode.node = this.node.node.data.id.startsWith("node/");
+      this.nameOptions = [];
+      this.selectedName = null;
+
+      if (this.nodeMode.input) {
+        const type = this.node.node.data.id.slice("from_data/".length);
+        Api.get("names_for_type", { type }).then(r => {
+          this.nameOptions = r.data;
+          const name = this.node.node.data.data_name;
+
+          if (r.data.find(v => v == name)) {
+            this.selectedName = name;
+          } else {
+            this.selectedName = r.data.length ? "Select …" : "None available";
+          }
+        });
+      }
     }
   },
   data() {
     return {
       node: null,
       jsonEditor: {},
-      jsonRead: {}
+      jsonRead: {},
+      nodeMode: {
+        input: false,
+        output: false,
+        node: false
+      },
+      nameOptions: [],
+      selectedName: null
     };
   },
   mounted() {
@@ -41,9 +70,15 @@ export default {
   watch: {
     node(v) {
       if (v !== null) {
+        this.render();
         this.showModal();
       } else {
         this.hideModal();
+      }
+    },
+    selectedName(v) {
+      if (v) {
+        this.node.node.data.data_name = v;
       }
     }
   }

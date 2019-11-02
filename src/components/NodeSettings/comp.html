@@ -5,7 +5,28 @@
   @hidden="dismiss"
 >
   <div v-if="node">
-    <v-jsoneditor @input="jsonEditorChanged" :plus="false" height="400px" @error="onError" :value="jsonRead" />
+    <v-jsoneditor
+      @input="jsonEditorChanged"
+      :plus="false"
+      height="400px"
+      @error="onError"
+      :value="jsonRead"
+      v-if="nodeMode.node"
+    ></v-jsoneditor>
+    <b-dropdown
+      v-if="nodeMode.input"
+      :text="'Dataset: ' + selectedName"
+      variant="outline-success"
+    >
+      <b-dropdown-item
+        v-for="option in nameOptions"
+        :value="option"
+        @click="selectedName = option"
+        :key="option"
+      >
+        {{ option }}
+      </b-dropdown-item>
+    </b-dropdown>
   </div>
 
   <template v-slot:modal-footer>
