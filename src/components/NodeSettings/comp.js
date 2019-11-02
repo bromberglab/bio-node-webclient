@@ -1,5 +1,6 @@
 import { Events } from "src/events.js";
 import Api from "src/services/api";
+const debounce = require("debounce");
 
 // boot up the demo
 export default {
@@ -44,7 +45,13 @@ export default {
           }
         });
       }
-    }
+      if (this.nodeMode.output) {
+        this.outputName = this.node.node.data.data_name;
+      }
+    },
+    outputNameChange: debounce(function(v) {
+      this.node.node.data.data_name = v;
+    }, 100)
   },
   data() {
     return {
@@ -57,7 +64,8 @@ export default {
         node: false
       },
       nameOptions: [],
-      selectedName: null
+      selectedName: null,
+      outputName: null
     };
   },
   mounted() {

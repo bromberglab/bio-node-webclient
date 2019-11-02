@@ -27,6 +27,13 @@
         {{ option }}
       </b-dropdown-item>
     </b-dropdown>
+
+    <b-input
+      placeholder="Output Name"
+      :value="outputName"
+      @input="outputNameChange"
+      v-if="nodeMode.output"
+    ></b-input>
   </div>
 
   <template v-slot:modal-footer>
