@@ -14,7 +14,8 @@ export default {
     },
     download() {
       Api.post("create_download", {
-        name: this.node.data.data_name
+        name: this.node.data.data_name,
+        type: this.node.data.id.slice("to_data/".length)
       }).then(r => {
         window.open(r.data.url);
       });
