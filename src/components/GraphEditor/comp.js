@@ -8,6 +8,7 @@ import NodeSettings from "../NodeSettings/comp.vue";
 import Api from "src/services/api";
 import { Events } from "src/events.js";
 const debounce = require("debounce");
+const uuid = require("uuid/v4");
 
 const mutex = new Mutex();
 
@@ -135,7 +136,7 @@ export default {
                   node.addInput(inp);
                   node.data.id = "to_data/" + v;
                   node.data.displayName = "To Data Storage";
-                  node.data.data_name = node.data.data_name || "<required>";
+                  node.data.data_name = node.data.data_name || uuid();
                 }
 
                 worker(node, inputs) {
