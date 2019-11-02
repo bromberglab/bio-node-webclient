@@ -1,28 +1,36 @@
 <div class="rete-editor">
-  <NodeSettings />
+  <NodeSettings></NodeSettings>
   <div class="rete-container">
     <div class="node-editor"></div>
   </div>
+  <div class="filter-bar">
+    <b-button-group size="sm">
+      <b-button
+        v-for="(btn, idx) in buttons"
+        :key="idx"
+        :pressed.sync="btn.state"
+        variant="outline-primary"
+        @click="filterButtonClicked"
+      >
+        {{ btn.caption }}
+      </b-button>
+    </b-button-group>
+    <b-input placeholder="Filter" v-model="filterText" size="sm"></b-input>
+  </div>
   <div class="dock"></div>
   <div class="save-load">
-  <b-input-group>
-    <b-form-input
-      type="text"
-      placeholder="Save Name"
-      v-model="saveName"
-    ></b-form-input>
+    <b-input-group>
+      <b-form-input
+        type="text"
+        placeholder="Save Name"
+        v-model="saveName"
+      ></b-form-input>
 
-    <b-input-group-append>
-      <b-button variant="outline-primary" @click="loadFlow"
-        >Load</b-button
-      >
-      <b-button variant="outline-success" @click="saveFlow"
-        >Save</b-button
-      >
-      <b-button variant="success" @click="runFlow"
-        >Run</b-button
-      >
-    </b-input-group-append>
-  </b-input-group>
+      <b-input-group-append>
+        <b-button variant="outline-primary" @click="loadFlow">Load</b-button>
+        <b-button variant="outline-success" @click="saveFlow">Save</b-button>
+        <b-button variant="success" @click="runFlow">Run</b-button>
+      </b-input-group-append>
+    </b-input-group>
   </div>
 </div>

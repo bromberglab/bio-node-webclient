@@ -1,4 +1,4 @@
-<div class="node" :class="[selected(), node.name] | kebab">
+<div class="node" :class="[selected(), node.name, (buttonFilteredOut || textFilteredOut) ? 'filtered' : ''] | kebab">
   <div class="title">
     {{ node.data.displayName }}
     <font-awesome-icon icon="download" class="download" @click="download" v-if='node.data.data_name' />

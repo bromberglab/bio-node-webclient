@@ -23,3 +23,8 @@ body,
   transform: translate(-50%, -50%);
   z-index: 10000;
 }
+
+:focus {
+  outline: initial !important;
+  box-shadow: initial !important;
+}

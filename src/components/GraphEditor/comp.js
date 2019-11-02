@@ -7,6 +7,7 @@ import CustomNodeComponent from "./CustomComponents/node.vue";
 import NodeSettings from "../NodeSettings/comp.vue";
 import Api from "src/services/api";
 import { Events } from "src/events.js";
+const debounce = require("debounce");
 
 const mutex = new Mutex();
 
@@ -51,12 +52,28 @@ export default {
     return {
       saveName: "My Workflow",
       editor: null,
+      filterText: "",
       classes: Array(),
       sockets: {},
-      engine: null
+      engine: null,
+      buttons: [
+        { caption: "Inputs", state: true },
+        { caption: "Outputs", state: true },
+        { caption: "Nodes", state: true }
+      ]
     };
   },
+  watch: {
+    filterText: debounce(function(v) {
+      Events.$emit("node-filter/text", v);
+    }, 200)
+  },
   methods: {
+    filterButtonClicked() {
+      Events.$emit("node-filter/inputs", this.buttons[0].state);
+      Events.$emit("node-filter/outputs", this.buttons[1].state);
+      Events.$emit("node-filter/nodes", this.buttons[2].state);
+    },
     saveFlow() {
       Api.post("workflow_storage", {
         name: this.saveName,

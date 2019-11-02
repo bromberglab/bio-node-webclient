@@ -17,10 +17,15 @@
     display: inline-block;
     vertical-align: top;
     font-size: 0.8em;
-    margin: 0.3em 1em;
-    transform-origin: 50% 0;
+    .node {
+      margin: 0.3em 1em;
+    }
     .settings,
     .download {
+      display: none;
+    }
+
+    .filtered {
       display: none;
     }
   }
@@ -56,5 +61,22 @@
     right: 5px;
     width: 50%;
     max-width: 350px;
+  }
+
+  .filter-bar {
+    text-align: left;
+    position: relative;
+    input {
+      position: absolute;
+      right: 0;
+      top: 0;
+      left: auto;
+      max-width: 20em;
+    }
+
+    .btn:hover {
+      background-color: initial;
+      color: var(--primary);
+    }
   }
 }
