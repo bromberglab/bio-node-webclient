@@ -31,10 +31,13 @@
       v-control="input.control"
     ></div>
   </div>
-  <div class="settings" @click="openSettings" v-if="!running">
+  <div class="settings" @click="openSettings" v-if="!running && !scheduled">
     <font-awesome-icon icon="cog" />
   </div>
   <div class="settings" v-if="running">
     <font-awesome-icon icon="cog" spin />
+  </div>
+  <div class="settings scheduled" v-if="scheduled">
+    <font-awesome-icon icon="cog" />
   </div>
 </div>

@@ -31,11 +31,12 @@ export default {
       Events.$on("server-event/status-change", d => {
         // important: == not ===
         if (d.type == "job" && d.old_id == this.node.id) {
-          this.running = !d.finished;
+          this.running = !d.finished && d.scheduled; // 'scheduled' on the server means 'running' in vue.
+          this.scheduled = !d.scheduled; // 'scheduled' in vue means not yet 'running', so not 'scheduled' on server.
         }
       });
       Events.$on("run-all", () => {
-        this.running = true;
+        this.scheduled = true;
       });
     } else {
       if (this.node.data.id.startsWith("from_data/")) {
@@ -71,6 +72,7 @@ export default {
   data() {
     return {
       running: false,
+      scheduled: false,
       buttonFilteredOut: false,
       textFilteredOut: false
     };
