@@ -114,7 +114,7 @@ export default {
 
                   node.addOutput(out);
                   node.data.id = "from_data/" + v;
-                  node.data.displayName = "From Data Storage";
+                  node.data.displayName = "Input";
                   node.data.data_name = node.data.data_name || "<required>";
                 }
 
@@ -135,7 +135,7 @@ export default {
 
                   node.addInput(inp);
                   node.data.id = "to_data/" + v;
-                  node.data.displayName = "To Data Storage";
+                  node.data.displayName = "Output";
                   node.data.data_name = node.data.data_name || uuid();
                 }
 
