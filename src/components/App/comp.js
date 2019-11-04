@@ -35,6 +35,11 @@ export default {
   name: "app",
   router,
   methods: {
+    disableCookieInfo() {
+      this.showCookieInfo = false;
+
+      Api.post("show_cookie_info");
+    },
     dragOn() {
       this.dragActive = true;
     },
@@ -45,7 +50,8 @@ export default {
   data() {
     return {
       loading: 0,
-      dragActive: false
+      dragActive: false,
+      showCookieInfo: false
     };
   },
   watch: {
@@ -65,6 +71,11 @@ export default {
     Api.get("check_auth").then(response => {
       if (response.data !== true) {
         window.location.href = "/";
+      }
+    });
+    Api.get("show_cookie_info").then(response => {
+      if (response.data === true) {
+        this.showCookieInfo = true;
       }
     });
   },

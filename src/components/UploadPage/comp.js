@@ -7,8 +7,14 @@ export default {
     UploadStepTwo
   },
   methods: {
-    finishStepOne() {
+    finishStepOne(v) {
+      this.stepOneData = v;
       this.$root.$emit("bv::toggle::collapse", "upload-stage-two");
     }
+  },
+  data() {
+    return {
+      stepOneData: null
+    };
   }
 };

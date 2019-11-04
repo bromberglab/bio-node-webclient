@@ -8,7 +8,7 @@ export default {
       treeData: { name: "Uploaded Files:", children: this.files }
     };
   },
-  props: { files: Array },
+  props: { files: Array, alwaysExtended: Boolean },
   watch: {
     files: function(newVal) {
       this.treeData.children = newVal;

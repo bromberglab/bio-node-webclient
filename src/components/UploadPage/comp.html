@@ -1,24 +1,20 @@
-<div>
-  <div role="tablist">
-    <b-card no-body>
-      <b-collapse
-        id="upload-stage-one"
-        visible
-        accordion="upload"
-        role="tabpanel"
-      >
-        <b-card-body>
-          <UploadStepOne @next-step="finishStepOne"></UploadStepOne>
-        </b-card-body>
-      </b-collapse>
-    </b-card>
+<div class="host">
+  <div role="tablist" class="tab-list">
+    <b-collapse
+      id="upload-stage-one"
+      visible
+      accordion="upload"
+      role="tabpanel"
+    >
+      <b-card-body>
+        <UploadStepOne @next-step="finishStepOne"></UploadStepOne>
+      </b-card-body>
+    </b-collapse>
 
-    <b-card no-body>
-      <b-collapse id="upload-stage-two" accordion="upload" role="tabpanel">
-        <b-card-body>
-          <UploadStepTwo></UploadStepTwo>
-        </b-card-body>
-      </b-collapse>
-    </b-card>
+    <b-collapse id="upload-stage-two" accordion="upload" role="tabpanel">
+      <b-card-body>
+        <UploadStepTwo :step-one-data="stepOneData"></UploadStepTwo>
+      </b-card-body>
+    </b-collapse>
   </div>
 </div>

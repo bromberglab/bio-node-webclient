@@ -1,3 +1,23 @@
-<div>
-  Done.
+<div class="host">
+  <Tree :files="stepOne.tree" :always-extended="true" class="tree"></Tree>
+  <div v-for="(text, i) in types" class="d-inline-block column">
+    <div class="head">
+      <font-awesome-icon
+        icon="times"
+        @click="removeColumn(i)"
+      ></font-awesome-icon>
+      <b-input placeholder="Type" :value="text"></b-input>
+    </div>
+    <div class="box" v-for="(line) in lines">
+      <b-form-checkbox
+        name="checkbox-1"
+        v-if="line.val == 'box'"
+        @input="checked(i, line.index, $event)"
+        :checked="checkboxes[i][line.index]"
+      >
+      </b-form-checkbox>
+    </div>
+  </div>
+
+  <font-awesome-icon icon="plus" @click="addColumn"></font-awesome-icon>
 </div>

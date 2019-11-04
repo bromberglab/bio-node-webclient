@@ -28,3 +28,29 @@ body,
   outline: initial !important;
   box-shadow: initial !important;
 }
+
+.cookie-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 100%;
+
+  overflow: hidden;
+  transition: max-height 1s;
+}
+.cookie-info-wrap {
+  text-align: center;
+  background-color: #fff2ca;
+  border: 0 solid #ffc107;
+  border-top-width: 1px;
+  padding: 10px 0;
+  transition: transform 1s;
+}
+
+.hide-below {
+  max-height: 0;
+  .cookie-info-wrap {
+    transform: translateY(100%);
+  }
+}

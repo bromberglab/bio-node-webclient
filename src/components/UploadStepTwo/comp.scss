@@ -1,0 +1,52 @@
+.host {
+  padding: 1em;
+  text-align: left;
+}
+
+::v-deep div {
+  height: 25px;
+}
+
+.tree {
+  display: inline-block;
+  margin-left: 0;
+  padding-top: 40px;
+  padding-right: 20px;
+}
+
+.head {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  width: 140px;
+  margin: 0 10px;
+  input {
+    display: inline-block;
+  }
+  svg {
+    margin: 0 5px 0 0;
+    color: red;
+  }
+}
+
+* {
+  vertical-align: top;
+}
+
+.box {
+  text-align: center;
+  .custom-checkbox {
+    padding-left: 2.2em;
+  }
+}
+
+.column {
+  height: initial;
+}
+
+svg {
+  color: green;
+  height: 40px;
+  margin: 0 15px;
+  cursor: pointer;
+}

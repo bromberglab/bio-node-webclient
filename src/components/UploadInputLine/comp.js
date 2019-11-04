@@ -26,16 +26,16 @@ export default {
       this.fileType = value;
     }, config.debounceDefault),
     updateUpload(isFinished) {
+      if (isFinished) return Api.post("finish_upload");
       return Api.post("my_upload", {
         file_type: this.fileType,
         job_count: this.selectedJobCount.value,
-        name: this.uploadName,
-        is_finished: isFinished || false
+        name: this.uploadName
       });
     },
     finishUpload() {
-      this.updateUpload(true).then(() => {
-        window.location.reload();
+      this.updateUpload(true).then(r => {
+        this.$emit("continue", r.data);
       });
     }
   },
