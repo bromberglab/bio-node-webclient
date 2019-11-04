@@ -1,52 +1,54 @@
-.host {
+.main {
+  width: 100%;
+  height: 100%;
   padding: 1em;
   text-align: left;
-}
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: auto;
 
-::v-deep div {
-  height: 25px;
-}
+  ::v-deep div {
+    height: 25px;
+  }
 
-.tree {
-  display: inline-block;
-  margin-left: 0;
-  padding-top: 40px;
-  padding-right: 20px;
-}
-
-.head {
-  display: inline-flex;
-  align-items: center;
-  height: 40px;
-  width: 140px;
-  margin: 0 10px;
-  input {
+  .tree {
     display: inline-block;
+    margin-left: 0;
+    padding-top: 40px;
+    padding-right: 20px;
   }
-  svg {
-    margin: 0 5px 0 0;
-    color: red;
+
+  .head {
+    height: 40px;
+    width: 140px;
+    margin: 0 10px;
+    input {
+      display: inline-block;
+    }
   }
-}
 
-* {
-  vertical-align: top;
-}
-
-.box {
-  text-align: center;
-  .custom-checkbox {
-    padding-left: 2.2em;
+  *:not(svg) {
+    vertical-align: top;
   }
-}
 
-.column {
-  height: initial;
-}
+  .box {
+    text-align: center;
+    .custom-checkbox {
+      padding-left: 2.2em;
+    }
+  }
 
-svg {
-  color: green;
-  height: 40px;
-  margin: 0 15px;
-  cursor: pointer;
+  .column {
+    height: initial;
+  }
+
+  .add {
+    height: 40px;
+    margin: 0 15px;
+    cursor: pointer;
+  }
+
+  .input-group-prepend {
+    height: initial;
+  }
 }

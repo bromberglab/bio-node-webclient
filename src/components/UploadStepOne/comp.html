@@ -1,5 +1,12 @@
 <div>
-  <Uploader @file-uploaded="getTree" class="uploader" />
-  <Tree :files="files" />
-  <UploadInputLine class="line" @continue="$emit('next-step', $event)" />
+  <Uploader
+    @upload-start="uploadStarted"
+    @file-uploaded="getTree"
+    class="uploader"
+  ></Uploader>
+  <Tree :files="files"></Tree>
+  <UploadInputLine
+    class="line"
+    @continue="$emit('next-step', $event)"
+  ></UploadInputLine>
 </div>

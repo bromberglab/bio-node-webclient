@@ -1,4 +1,5 @@
 import Tree from "../Tree/comp.vue";
+import Api from "src/services/api";
 
 export default {
   components: {
@@ -58,11 +59,36 @@ export default {
       this.types.splice(index, 1);
     },
     addColumn() {
-      this.checkboxes.push(this.checkboxes[0].map(v => false));
+      this.checkboxes.push(this.checkboxes[0].map(() => false));
       this.types.push("");
     },
     checked(i, j, v) {
       this.checkboxes[i][j] = v;
+    },
+    changeType(i, t) {
+      this.types[i] = t;
+    },
+    finish(manualFormat) {
+      let checkboxes = [];
+      for (let j = 0; j < this.suffixes.length; j++) {
+        let row = [];
+        for (let i = 0; i < this.types.length; i++) {
+          if (this.checkboxes[i][j]) {
+            row.push(i);
+          }
+        }
+        checkboxes.push(row);
+      }
+
+      let payload = {
+        manual_format: manualFormat,
+        checkboxes,
+        suffixes: this.suffixes,
+        types: this.types
+      };
+      Api.post("finalize_upload", payload).then(() => {
+        window.location.reload();
+      });
     }
   },
   watch: {

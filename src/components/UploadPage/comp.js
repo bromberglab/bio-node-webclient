@@ -9,7 +9,9 @@ export default {
   methods: {
     finishStepOne(v) {
       this.stepOneData = v;
-      this.$root.$emit("bv::toggle::collapse", "upload-stage-two");
+      setTimeout(() => {
+        this.$root.$emit("bv::toggle::collapse", "upload-stage-two");
+      }, 1);
     }
   },
   data() {

@@ -2,6 +2,7 @@
   :options="options"
   class="uploader"
   @file-success="fileUploaded"
+  @upload-start="$emit('upload-start')"
   :class="{ 'drag-active': dragActive }"
 >
   <uploader-unsupport></uploader-unsupport>

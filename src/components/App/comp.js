@@ -66,6 +66,9 @@ export default {
     Events.$on("stop-loading", () => {
       if (this.loading > 0) this.loading--;
     });
+    Events.$on("stop-drag", () => {
+      this.dragActive = false;
+    });
   },
   mounted() {
     Api.get("check_auth").then(response => {
