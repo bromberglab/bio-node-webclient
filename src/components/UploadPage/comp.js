@@ -1,34 +1,14 @@
-import Api from "src/services/api.js";
-import Uploader from "../Uploader/comp.vue";
-import Tree from "../Tree/comp.vue";
-import UploadInputLine from "../UploadInputLine/comp.vue";
+import UploadStepOne from "../UploadStepOne/comp.vue";
+import UploadStepTwo from "../UploadStepTwo/comp.vue";
 
 export default {
-  name: "app",
   components: {
-    Uploader,
-    Tree,
-    UploadInputLine
-  },
-  mounted() {
-    this.getTree();
+    UploadStepOne,
+    UploadStepTwo
   },
   methods: {
-    getTree() {
-      Api.get("upload_tree").then(response => (this.files = response.data));
-      Api.get("my_upload").then(
-        response => (this.uploadId = response.data.uuid)
-      );
+    finishStepOne() {
+      this.$root.$emit("bv::toggle::collapse", "upload-stage-two");
     }
-  },
-  data() {
-    return {
-      uploadId: "loading …",
-      files: [
-        {
-          name: "loading …"
-        }
-      ]
-    };
   }
 };

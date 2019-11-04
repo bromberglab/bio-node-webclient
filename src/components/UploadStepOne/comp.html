@@ -1,0 +1,5 @@
+<div>
+  <Uploader @file-uploaded="getTree" class="uploader" />
+  <Tree :files="files" />
+  <UploadInputLine class="line" @continue="$emit('next-step')" />
+</div>
