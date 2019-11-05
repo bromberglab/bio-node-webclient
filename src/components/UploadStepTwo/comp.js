@@ -24,7 +24,7 @@ export default {
       this.lines.push({
         val: "folder"
       });
-      for (let item in treeItem) {
+      treeItem.forEach(item => {
         if (!item.children) {
           this.lines.push({
             val: "box",
@@ -33,7 +33,7 @@ export default {
         } else {
           i = this.addLines(item.children, i);
         }
-      }
+      });
       return i;
     },
     setup(v) {
@@ -52,7 +52,7 @@ export default {
       this.addLines(v.tree);
 
       this.types = [];
-      v.suffixes.forEach(v => this.types.push(v.slice(1)));
+      v.suffixes.forEach(v => this.types.push(v));
     },
     removeColumn(index) {
       this.checkboxes.splice(index, 1);
