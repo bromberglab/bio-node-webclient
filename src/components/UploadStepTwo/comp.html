@@ -2,7 +2,17 @@
   <h2 class="display-4 mb-4">
     Upload Format
   </h2>
-  <div class="main">
+  <div class="error" v-if="stepOne && stepOne.error">
+    <b-card
+      bg-variant="warning"
+      text-variant="white"
+      header="Error"
+      class="text-center"
+    >
+      <b-card-text>{{ stepOne.error }}</b-card-text>
+    </b-card>
+  </div>
+  <div class="main" v-if="stepOne && !stepOne.error">
     <Tree :files="stepOne.tree" :always-extended="true" class="tree"></Tree>
     <div v-for="(text, i) in types" class="d-inline-block column">
       <div class="head">
@@ -37,7 +47,12 @@
       class="add text-success"
     ></font-awesome-icon>
   </div>
-  <b-button class="m-2" variant="success" @click="finish(false)">
+  <b-button
+    class="m-2"
+    variant="success"
+    @click="finish(false)"
+    :disabled="stepOne && stepOne.error"
+  >
     Apply
   </b-button>
   <b-button class="m-2" @click="finish(true)">
