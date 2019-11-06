@@ -65,6 +65,7 @@
     ref="modal"
     title="Manual Format Type"
     @show="resetModal"
+    @shown="focusModal"
     @hidden="resetModal"
     @ok="handleOk"
   >
@@ -80,6 +81,7 @@
           v-model="manualName"
           :state="nameState"
           required
+          placeholder="e.g. num_file"
         ></b-form-input>
       </b-form-group>
     </form>

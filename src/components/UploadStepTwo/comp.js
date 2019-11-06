@@ -94,7 +94,7 @@ export default {
     },
     checkFormValidity() {
       const valid = this.manualName.length > 0;
-      this.nameState = valid ? "valid" : "invalid";
+      this.nameState = valid;
       return valid;
     },
     resetModal() {
@@ -118,6 +118,9 @@ export default {
       this.$nextTick(() => {
         this.$refs.modal.hide();
       });
+    },
+    focusModal() {
+      document.getElementById("manual-upload-name-input").focus();
     }
   },
   watch: {
