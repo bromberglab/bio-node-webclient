@@ -16,10 +16,11 @@ export default {
   },
   methods: {
     getTree() {
-      Api.get("upload_tree").then(response => (this.files = response.data));
-      Api.get("my_upload").then(
-        response => (this.uploadId = response.data.uuid)
-      );
+      Api.get("my_upload").then(response => {
+        this.uploadId = response.data.uuid;
+        this.upload = response.data;
+        Api.get("upload_tree").then(response => (this.files = response.data));
+      });
     },
     uploadStarted() {
       Events.$emit("stop-drag");
@@ -27,6 +28,7 @@ export default {
   },
   data() {
     return {
+      upload: null,
       uploadId: "loading …",
       files: [
         {

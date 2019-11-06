@@ -9,7 +9,9 @@
       header="Error"
       class="text-center"
     >
-      <b-card-text>{{ stepOne.error }}</b-card-text>
+      <b-card-text>
+        <p style="white-space: pre-line;">{{ stepOne.error }}</p>
+      </b-card-text>
     </b-card>
   </div>
   <div class="main" v-if="stepOne && !stepOne.error">

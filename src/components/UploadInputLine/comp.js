@@ -39,15 +39,6 @@ export default {
       });
     }
   },
-  mounted() {
-    Api.get("my_upload").then(response => {
-      this.fileType = response.data.file_type;
-      this.uploadName = response.data.display_name;
-      this.selectedJobCount = jobCounts.filter(
-        v => v.value == response.data.job_count
-      )[0];
-    });
-  },
   data() {
     return {
       files: [
@@ -61,6 +52,9 @@ export default {
       selectedJobCount: null
     };
   },
+  props: {
+    upload: Object
+  },
   watch: {
     fileType(newVal, oldVal) {
       if (oldVal !== null && oldVal !== newVal) this.updateUpload();
@@ -70,6 +64,14 @@ export default {
     },
     selectedJobCount(newVal, oldVal) {
       if (oldVal !== null && oldVal.value !== newVal.value) this.updateUpload();
+    },
+    upload(val) {
+      if (val === null) return;
+      this.fileType = val.file_type;
+      this.uploadName = val.display_name;
+      this.selectedJobCount = jobCounts.filter(
+        v => v.value == val.job_count
+      )[0];
     }
   }
 };
