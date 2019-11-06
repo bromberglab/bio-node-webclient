@@ -15,7 +15,9 @@ export default {
       suffixes: null,
       types: [],
       lines: [],
-      checkboxes: []
+      checkboxes: [],
+      manualName: "",
+      nameState: null
     };
   },
   methods: {
@@ -88,6 +90,33 @@ export default {
       };
       Api.post("finalize_upload", payload).then(() => {
         window.location.reload();
+      });
+    },
+    checkFormValidity() {
+      const valid = this.manualName.length > 0;
+      this.nameState = valid ? "valid" : "invalid";
+      return valid;
+    },
+    resetModal() {
+      this.manualName = "";
+      this.nameState = null;
+    },
+    handleOk(bvModalEvt) {
+      // Prevent modal from closing
+      bvModalEvt.preventDefault();
+      // Trigger submit handler
+      this.handleSubmit();
+    },
+    handleSubmit() {
+      // Exit when the form isn't valid
+      if (!this.checkFormValidity()) {
+        return;
+      }
+
+      this.finish(this.manualName);
+      // Hide the modal manually
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
       });
     }
   },

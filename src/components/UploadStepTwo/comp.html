@@ -57,7 +57,31 @@
   >
     Apply
   </b-button>
-  <b-button class="m-2" @click="finish(true)">
-    Abort, Manual Format
-  </b-button>
+  <b-button class="m-2" v-b-modal.manual-format-modal
+    >Abort, Manual Format</b-button
+  >
+  <b-modal
+    id="manual-format-modal"
+    ref="modal"
+    title="Manual Format Type"
+    @show="resetModal"
+    @hidden="resetModal"
+    @ok="handleOk"
+  >
+    <form ref="form" @submit.stop.prevent="handleSubmit">
+      <b-form-group
+        :state="nameState"
+        label="Type"
+        label-for="manual-upload-name-input"
+        invalid-feedback="Name is required"
+      >
+        <b-form-input
+          id="manual-upload-name-input"
+          v-model="manualName"
+          :state="nameState"
+          required
+        ></b-form-input>
+      </b-form-group>
+    </form>
+  </b-modal>
 </div>
