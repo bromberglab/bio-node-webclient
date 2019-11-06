@@ -12,15 +12,17 @@ export default {
     UploadInputLine
   },
   mounted() {
-    this.getTree();
+    Events.$emit("start-loading");
+    Api.get("my_upload").then(response => {
+      this.uploadId = response.data.uuid;
+      this.upload = response.data;
+      this.getTree();
+      Events.$emit("stop-loading");
+    });
   },
   methods: {
     getTree() {
-      Api.get("my_upload").then(response => {
-        this.uploadId = response.data.uuid;
-        this.upload = response.data;
-        Api.get("upload_tree").then(response => (this.files = response.data));
-      });
+      Api.get("upload_tree").then(response => (this.files = response.data));
     },
     uploadStarted() {
       Events.$emit("stop-drag");
