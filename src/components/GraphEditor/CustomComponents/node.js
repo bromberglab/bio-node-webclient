@@ -13,9 +13,13 @@ export default {
       Events.$emit("open-node-settings", this);
     },
     download() {
+      let type = this.node.data.id.slice("to_data/".length);
+      if (this.node.data.id.slice(0, 2) != "to") {
+        type = this.node.data.id.slice("from_data/".length);
+      }
       Api.post("create_download", {
         name: this.node.data.data_name,
-        type: this.node.data.id.slice("to_data/".length)
+        type: type
       }).then(r => {
         window.open(r.data.url);
       });
