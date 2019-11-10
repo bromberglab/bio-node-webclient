@@ -1,6 +1,6 @@
 import mixin from "rete-vue-render-plugin/src/mixin";
 import Socket from "./socket.vue";
-import { Events } from "src/events.js";
+import Events from "src/events.js";
 import Api from "src/services/api";
 
 export default {

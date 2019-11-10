@@ -1,2 +1,2 @@
 import Vue from "vue";
-export const Events = new Vue();
+export default new Vue();

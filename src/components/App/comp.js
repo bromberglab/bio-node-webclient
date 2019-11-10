@@ -1,8 +1,9 @@
 import UploadPage from "../UploadPage/comp.vue";
 import GraphEditor from "../GraphEditor/comp.vue";
 import VueRouter from "vue-router";
-import { Events } from "src/events.js";
+import Events from "src/events.js";
 import Api from "src/services/api";
+import Auth from "src/services/auth";
 import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 
 const routes = [
@@ -72,8 +73,10 @@ export default {
   },
   mounted() {
     Api.get("check_auth").then(response => {
-      if (response.data !== true) {
+      if (response.data.logged_in !== true) {
         window.location.href = "/";
+      } else {
+        Auth.userId = response.data.user;
       }
     });
     Api.get("show_cookie_info").then(response => {

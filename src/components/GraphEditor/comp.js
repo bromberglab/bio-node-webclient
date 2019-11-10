@@ -6,7 +6,7 @@ import DockPlugin from "rete-dock-plugin";
 import CustomNodeComponent from "./CustomComponents/node.vue";
 import NodeSettings from "../NodeSettings/comp.vue";
 import Api from "src/services/api";
-import { Events } from "src/events.js";
+import Events from "src/events.js";
 const debounce = require("debounce");
 const uuid = require("uuid/v4");
 
