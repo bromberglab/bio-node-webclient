@@ -1,0 +1,14 @@
+<div>
+  <b-toast
+    v-for="toast in toasts"
+    :id="'notification-toast-' + toast.num"
+    :key="toast.num"
+    @hidden="toastHidden(toast)"
+    :variant="toast.variant"
+  >
+    <template v-slot:toast-title>
+      {{ toast.short_text }}
+    </template>
+    {{ toast.long_text }}
+  </b-toast>
+</div>

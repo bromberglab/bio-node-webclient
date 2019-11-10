@@ -9,6 +9,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import VJsoneditor from "v-jsoneditor";
 import VueSSE from "vue-sse";
 import ServerEvents from "src/services/server-events";
+import Notifications from "src/services/notifications";
 
 import "./custom.scss";
 
@@ -27,3 +28,4 @@ new Vue({
 }).$mount("#app");
 
 ServerEvents.listen();
+Notifications.listen();

@@ -1,5 +1,6 @@
 import UploadPage from "../UploadPage/comp.vue";
 import GraphEditor from "../GraphEditor/comp.vue";
+import NotificationPopup from "../NotificationPopup/comp.vue";
 import VueRouter from "vue-router";
 import Events from "src/events.js";
 import Api from "src/services/api";
@@ -86,6 +87,7 @@ export default {
     });
   },
   components: {
-    "vue-spinner": ScaleLoader
+    "vue-spinner": ScaleLoader,
+    NotificationPopup
   }
 };
