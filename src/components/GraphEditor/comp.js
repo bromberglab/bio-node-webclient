@@ -160,7 +160,7 @@ export default {
               }
 
               builder(node) {
-                node.data.image = image;
+                node.data.image = node.data.image || image;
 
                 let j = 0;
                 image.inputs.forEach(v => {
