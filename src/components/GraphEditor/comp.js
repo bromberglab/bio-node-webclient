@@ -8,6 +8,7 @@ import NodeSettings from "../NodeSettings/comp.vue";
 import Api from "src/services/api";
 import Notifications from "src/services/notifications";
 import Events from "src/events.js";
+import ContextMenuPlugin from "rete-context-menu-plugin";
 const debounce = require("debounce");
 const uuid = require("uuid/v4");
 
@@ -210,6 +211,18 @@ export default {
     this.editor.use(DockPlugin, {
       container: document.querySelector(".rete-editor .dock"),
       plugins: [[VueRenderPlugin, renderOptions]]
+    });
+    this.editor.use(ContextMenuPlugin, {
+      allocate(component) {
+        return null;
+      },
+      searchBar: false, // true by default
+      delay: 200,
+      items: {},
+      nodeItems: {
+        Delete: true, // Enable delete
+        Clone: false // Disable clone
+      }
     });
 
     this.fetchTypes();

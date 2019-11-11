@@ -79,4 +79,18 @@
       color: var(--primary);
     }
   }
+
+  .context-menu {
+    .item {
+      border-width: 0;
+      opacity: 70%;
+      &,
+      &:hover {
+        background-color: rgb(35, 37, 43);
+      }
+      &:hover {
+        opacity: 90%;
+      }
+    }
+  }
 }
