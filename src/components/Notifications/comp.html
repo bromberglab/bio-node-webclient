@@ -1,5 +1,5 @@
 <div class="host">
-  <div class="link-container d-flex">
+  <div class="link-container d-flex" v-if="notifications.length">
     <a class="ml-auto" href="JavaScript:void(0)" @click="clear()">Clear All</a>
   </div>
   <b-toast
@@ -36,4 +36,8 @@
       >
     </div>
   </b-toast>
+  <div class="none" v-if="!notifications.length">
+    <font-awesome-icon icon="umbrella-beach"> </font-awesome-icon><br />
+    all done
+  </div>
 </div>
