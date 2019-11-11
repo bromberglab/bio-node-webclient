@@ -9,6 +9,9 @@
         <b-nav-item to="/upload" exact exact-active-class="active"
           >Upload</b-nav-item
         >
+        <b-nav-item to="/notifications" exact exact-active-class="active"
+          >Notifications</b-nav-item
+        >
       </b-nav>
     </b-card-header>
 
@@ -19,7 +22,7 @@
   <div class="cookie-info" :class="{ 'hide-below': !showCookieInfo }">
     <div class="cookie-info-wrap">
       We are not tracking you, but this website does use cookies.
-      <a href="javascript:;" class="ml-2" @click="disableCookieInfo">
+      <a href="JavaScript:void(0)" class="ml-2" @click="disableCookieInfo">
         Ok
       </a>
       <a href="//google.com" class="ml-2">

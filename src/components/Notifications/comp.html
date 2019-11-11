@@ -1,0 +1,36 @@
+<div class="host">
+  <b-toast
+    v-for="notification in notifications"
+    :key="notification.num"
+    static
+    no-auto-hide
+    :visible="true"
+    :variant="notification.variant"
+    @hidden="remove(notification)"
+  >
+    <template v-slot:toast-title>
+      <div class="d-flex flex-grow-1 align-items-baseline">
+        <span class="mr-auto">{{ notification.short_text }}</span>
+        <small class="text-muted mr-2">{{ notification.ago }}</small>
+      </div>
+    </template>
+    <div
+      :class="{'text-truncate': !notification.expand, 'w-100': !notification.expand}"
+      class="content"
+    >
+      {{ notification.long_text }}
+    </div>
+
+    <div
+      class="d-flex flex-grow-1 align-items-baseline"
+      v-if="!notification.expand"
+    >
+      <a
+        class="ml-auto text-muted"
+        href="JavaScript:void(0)"
+        @click="expand(notification)"
+        >See All</a
+      >
+    </div>
+  </b-toast>
+</div>

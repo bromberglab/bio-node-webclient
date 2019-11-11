@@ -25,6 +25,9 @@ export default {
       id
     });
   },
+  getAll() {
+    return Api.get("notifications");
+  },
   listen() {
     Events.$on("server-event/notification", d => {
       if (d.user === Auth.userId) {
@@ -33,5 +36,14 @@ export default {
         });
       }
     });
+  },
+  variantForImportance(importance) {
+    if (importance <= 5) {
+      return "info";
+    }
+    if (importance <= 10) {
+      return "warning";
+    }
+    return "danger";
   }
 };

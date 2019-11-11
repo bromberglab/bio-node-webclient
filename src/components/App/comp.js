@@ -1,5 +1,6 @@
 import UploadPage from "../UploadPage/comp.vue";
 import GraphEditor from "../GraphEditor/comp.vue";
+import Notifications from "../Notifications/comp.vue";
 import NotificationPopup from "../NotificationPopup/comp.vue";
 import VueRouter from "vue-router";
 import Events from "src/events.js";
@@ -9,7 +10,8 @@ import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 
 const routes = [
   { path: "editor", component: GraphEditor },
-  { path: "upload", component: UploadPage }
+  { path: "upload", component: UploadPage },
+  { path: "notifications", component: Notifications }
 ];
 
 const Full = {

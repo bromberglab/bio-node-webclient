@@ -1,4 +1,5 @@
 import Events from "src/events.js";
+import Notifications from "src/services/notifications";
 
 export default {
   mounted() {
@@ -7,18 +8,11 @@ export default {
     });
   },
   methods: {
-    variantForImportance(importance) {
-      if (importance <= 5) {
-        return "info";
-      }
-      if (importance <= 10) {
-        return "warning";
-      }
-      return "danger";
-    },
     makeToast(notification) {
       notification.num = this.toastCounter++;
-      notification.variant = this.variantForImportance(notification.importance);
+      notification.variant = Notifications.variantForImportance(
+        notification.importance
+      );
 
       this.toasts.push(notification);
 
