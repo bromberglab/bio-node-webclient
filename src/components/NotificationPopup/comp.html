@@ -1,6 +1,7 @@
 <div>
   <b-toast
     v-for="toast in toasts"
+    :visible="!toast.hide"
     :id="'notification-toast-' + toast.num"
     :key="toast.num"
     @hidden="toastHidden(toast)"
@@ -9,6 +10,17 @@
     <template v-slot:toast-title>
       {{ toast.short_text }}
     </template>
-    {{ toast.long_text }}
+    <div class="text-truncate w-100">
+      {{ toast.long_text }}
+    </div>
+
+    <div class="d-flex flex-grow-1 align-items-baseline">
+      <a
+        class="ml-auto text-muted"
+        href="JavaScript:void(0)"
+        @click="toastHidden(toast, true)"
+        >See All</a
+      >
+    </div>
   </b-toast>
 </div>

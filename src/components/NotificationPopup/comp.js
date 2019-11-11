@@ -20,10 +20,15 @@ export default {
         this.$bvToast.show("notification-toast-" + notification.num);
       });
     },
-    toastHidden(notification) {
+    toastHidden(notification, goToPage) {
+      if (goToPage) {
+        notification.hide = true;
+        this.$router.push("notifications");
+      }
       for (let i = 0; i < this.toasts.length; i++) {
         if (this.toasts[i].num == notification.num) {
-          this.toasts.splice(i, 1);
+          if (goToPage) this.$set(this.toasts, i, notification);
+          else this.toasts.splice(i, 1);
           return;
         }
       }
