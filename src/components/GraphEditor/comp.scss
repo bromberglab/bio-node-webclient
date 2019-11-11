@@ -83,13 +83,13 @@
   .context-menu {
     .item {
       border-width: 0;
-      opacity: 70%;
+      opacity: 0.7;
       &,
       &:hover {
         background-color: rgb(35, 37, 43);
       }
       &:hover {
-        opacity: 90%;
+        opacity: 0.9;
       }
     }
   }
