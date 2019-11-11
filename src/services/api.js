@@ -17,5 +17,8 @@ export default {
   },
   put(endpoint, data) {
     return this.callEndpoint(axios.put, endpoint, data);
+  },
+  delete(endpoint, data) {
+    return this.callEndpoint(axios.delete, endpoint, { data });
   }
 };

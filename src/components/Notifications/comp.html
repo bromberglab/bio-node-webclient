@@ -1,4 +1,7 @@
 <div class="host">
+  <div class="link-container d-flex">
+    <a class="ml-auto" href="JavaScript:void(0)" @click="clear()">Clear All</a>
+  </div>
   <b-toast
     v-for="notification in notifications"
     :key="notification.num"

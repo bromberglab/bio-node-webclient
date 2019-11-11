@@ -1,4 +1,5 @@
 import Notifications from "src/services/notifications";
+import Api from "src/services/api";
 import * as timeAgo from "timeago.js";
 
 export default {
@@ -26,8 +27,14 @@ export default {
       for (let i = 0; i < this.notifications.length; i++) {
         if (this.notifications[i].num === notification.num) {
           this.notifications.splice(i, 1);
+          Api.delete("notification", {
+            pk: notification.pk
+          });
         }
       }
+    },
+    clear() {
+      Api.delete("notifications").then(() => this.load());
     },
     expand(notification) {
       notification.expand = true;
