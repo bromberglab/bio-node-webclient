@@ -9,9 +9,10 @@ import Api from "src/services/api";
 import Notifications from "src/services/notifications";
 import Events from "src/events.js";
 import ContextMenuPlugin from "rete-context-menu-plugin";
+import AutoArrangePlugin from "rete-auto-arrange-plugin";
+
 const debounce = require("debounce");
 const uuid = require("uuid/v4");
-
 const mutex = new Mutex();
 
 class CustomSocket extends Rete.Socket {
@@ -193,6 +194,11 @@ export default {
         });
         Events.$emit("stop-loading");
       });
+    },
+    arrange() {
+      this.editor.nodes.forEach(node =>
+        this.editor.trigger("arrange", { node })
+      );
     }
   },
   mounted() {
@@ -224,6 +230,8 @@ export default {
         Clone: false // Disable clone
       }
     });
+
+    this.editor.use(AutoArrangePlugin, { margin: { x: 50, y: 50 }, depth: 0 }); // depth - max depth for arrange (0 - unlimited)
 
     this.fetchTypes();
 

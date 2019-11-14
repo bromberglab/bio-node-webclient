@@ -55,12 +55,18 @@
 
   position: relative;
   .save-load {
-    text-align: left;
+    text-align: right;
     position: absolute;
     top: 5px;
     right: 5px;
     width: 50%;
     max-width: 350px;
+    * {
+      text-align: left;
+    }
+    & > .btn {
+      margin-top: 5px;
+    }
   }
 
   .filter-bar {
