@@ -196,9 +196,16 @@ export default {
       });
     },
     arrange() {
-      this.editor.nodes.forEach(node =>
-        this.editor.trigger("arrange", { node })
-      );
+      let withConnections = [];
+      this.editor.nodes.forEach(n => {
+        n.inputs.forEach(c => {
+          c.connections.forEach(() => {
+            withConnections.push(n);
+          });
+        });
+      });
+
+      withConnections.forEach(node => this.editor.trigger("arrange", { node }));
     }
   },
   mounted() {
