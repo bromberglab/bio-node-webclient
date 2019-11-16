@@ -7,43 +7,33 @@ import CustomNodeComponent from "./CustomComponents/node.vue";
 import NodeSettings from "../NodeSettings/comp.vue";
 import Api from "src/services/api";
 import Notifications from "src/services/notifications";
+import Types from "src/services/types";
 import Events from "src/events.js";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AutoArrangePlugin from "rete-auto-arrange-plugin";
+import AreaPlugin from "rete-area-plugin";
 
 const debounce = require("debounce");
 const uuid = require("uuid/v4");
 const mutex = new Mutex();
 
 class CustomSocket extends Rete.Socket {
-  matchesRule(str, rule) {
-    var escapeRegex = str => str.replace(/([.*+?^=!:${}()|[\]/\\])/g, "\\$1");
-    return new RegExp(
-      "^" +
-        rule
-          .split("*")
-          .map(escapeRegex)
-          .join(".*") +
-        "$"
-    ).test(str);
+  constructor(name, isDataSocket) {
+    super(name);
+    this.isDataSocket = isDataSocket || false;
   }
   compatibleWith(otherSocket) {
-    let str1 = this.name,
-      str2 = otherSocket.name;
-
-    try {
-      str1.split("|").forEach(s1 => {
-        str2.split("|").forEach(s2 => {
-          if (s1.includes("*") && s2.includes("*")) return; // continue, cant match
-          if (s1.includes("*") && this.matchesRule(s2, s1)) throw "break";
-          if (this.matchesRule(s1, s2)) throw "break";
-        });
-      });
-    } catch (err) {
+    if (this.isDataSocket && otherSocket.isDataSocket) {
+      return false;
+    }
+    if (this.isDataSocket || otherSocket.isDataSocket) {
       return true;
     }
 
-    return false;
+    let str1 = this.name,
+      str2 = otherSocket.name;
+
+    return Types.areCompatible(str1, str2);
   }
 }
 
@@ -64,7 +54,8 @@ export default {
         { caption: "Inputs", state: true },
         { caption: "Outputs", state: true },
         { caption: "Nodes", state: true }
-      ]
+      ],
+      fileTypes: []
     };
   },
   watch: {
@@ -98,59 +89,83 @@ export default {
       }).then(r => {
         this.editor.fromJSON(r.data);
       });
+      this.arrange();
     },
     fetchTypes() {
-      let sockets = this.sockets;
       Api.get("file_types").then(r => {
-        r.data
-          .map(v => v.name)
-          .forEach(v => {
-            this.sockets[v] = new CustomSocket(v);
-            this.classes.push(
-              class extends Rete.Component {
-                constructor() {
-                  super("from_data/" + v);
-                }
-
-                builder(node) {
-                  let out = new Rete.Output("o/" + 1, v, sockets[v]);
-
-                  node.addOutput(out);
-                  node.data.id = "from_data/" + v;
-                  node.data.displayName = "Input";
-                  node.data.data_name = node.data.data_name || "<required>";
-                }
-
-                worker(node, inputs, outputs) {
-                  // TODO
-                  outputs[1] = node.data.num;
-                }
-              }
-            );
-            this.classes.push(
-              class extends Rete.Component {
-                constructor() {
-                  super("to_data/" + v);
-                }
-
-                builder(node) {
-                  let inp = new Rete.Input("i/" + 1, v, sockets[v]);
-
-                  node.addInput(inp);
-                  node.data.id = "to_data/" + v;
-                  node.data.displayName = "Output";
-                  node.data.data_name = node.data.data_name || uuid();
-                }
-
-                worker(node, inputs) {
-                  // TODO
-                  node.data.num = inputs[1];
-                }
-              }
-            );
-          });
+        this.fileTypes = r.data.map(v => v.name);
+        this.createDataNodes();
         this.fetchImages();
       });
+    },
+    updateDataNode(node) {
+      let inOutputs;
+      if (node.outputs["o/1"]) {
+        inOutputs = node.outputs["o/1"].connections;
+      } else {
+        inOutputs = node.inputs["i/1"].connections;
+      }
+
+      node = this.editor.nodes.filter(n => n.id == node.id)[0];
+      node.connected = inOutputs.length || false;
+      if (node.connected) {
+        let connection = inOutputs[0];
+        let other = this.editor.nodes.filter(n => n.id == connection.node)[0];
+
+        let socket = connection.input || connection.output;
+        socket = other.inputs.get(socket) || other.outputs.get(socket);
+
+        node.dropdown.updateList(this.fileTypes, socket.name);
+      } else {
+        node.dropdown.clearList();
+      }
+    },
+    createDataNodes() {
+      let updateDataNode = this.updateDataNode;
+      let inputSocket = new CustomSocket("input", true);
+      let outputSocket = new CustomSocket("output", true);
+      this.classes.push(
+        class extends Rete.Component {
+          constructor() {
+            super("from_data");
+          }
+
+          builder(node) {
+            let out = new Rete.Output("o/" + 1, "-", inputSocket);
+
+            node.addOutput(out);
+            node.data.id = node.data.id || "from_data";
+            node.data.displayName = "Input";
+            node.data.data_name = node.data.data_name || "<required>";
+            node.isDataNode = true;
+          }
+
+          worker(node) {
+            updateDataNode(node);
+          }
+        }
+      );
+      this.classes.push(
+        class extends Rete.Component {
+          constructor() {
+            super("to_data");
+          }
+
+          builder(node) {
+            let inp = new Rete.Input("i/" + 1, "-", outputSocket);
+
+            node.addInput(inp);
+            node.data.id = node.data.id || "to_data";
+            node.data.displayName = "Output";
+            node.data.data_name = node.data.data_name || "<required>";
+            node.isDataNode = true;
+          }
+
+          worker(node) {
+            updateDataNode(node);
+          }
+        }
+      );
     },
     fetchImages() {
       let sockets = this.sockets;
@@ -182,7 +197,6 @@ export default {
 
               worker(node, inputs, outputs) {
                 // TODO
-                outputs[1] = node.data.num;
               }
             }
           );
@@ -206,6 +220,7 @@ export default {
       });
 
       withConnections.forEach(node => this.editor.trigger("arrange", { node }));
+      AreaPlugin.zoomAt(this.editor);
     }
   },
   mounted() {

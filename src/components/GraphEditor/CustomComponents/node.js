@@ -1,12 +1,14 @@
 import mixin from "rete-vue-render-plugin/src/mixin";
 import Socket from "./socket.vue";
+import DatasetDropdown from "./dataset-dropdown.vue";
 import Events from "src/events.js";
 import Api from "src/services/api";
 
 export default {
   mixins: [mixin],
   components: {
-    Socket
+    Socket,
+    DatasetDropdown
   },
   methods: {
     openSettings() {
@@ -23,15 +25,10 @@ export default {
       }).then(r => {
         window.open(r.data.url);
       });
-    },
-    isDocked() {
-      return Array(this.$el.parentElement.classList).find(v => v == "dock-item")
-        ? true
-        : false;
     }
   },
   mounted() {
-    if (!this.isDocked()) {
+    if (!this.isDocked) {
       Events.$on("server-event/status-change", d => {
         // important: == not ===
         if (d.type == "job" && d.old_id == this.node.id) {
@@ -42,6 +39,9 @@ export default {
       Events.$on("run-all", () => {
         this.scheduled = true;
       });
+      if (this.isDataset && !this.isDocked) {
+        this.dataNode = this.node;
+      }
     } else {
       if (this.node.data.id.startsWith("from_data/")) {
         Events.$on("node-filter/inputs", v => {
@@ -78,7 +78,18 @@ export default {
       running: false,
       scheduled: false,
       buttonFilteredOut: false,
-      textFilteredOut: false
+      textFilteredOut: false,
+      dataNode: null
     };
+  },
+  computed: {
+    isDataset() {
+      return this.node.isDataNode || false;
+    },
+    isDocked() {
+      return Array(this.$el.parentElement.classList).find(v => v == "dock-item")
+        ? true
+        : false;
+    }
   }
 };

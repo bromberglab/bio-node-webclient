@@ -26,8 +26,8 @@ export default {
       this.jsonEditor = v;
     },
     render() {
-      this.nodeMode.input = this.node.node.data.id.startsWith("from_data/");
-      this.nodeMode.output = this.node.node.data.id.startsWith("to_data/");
+      this.nodeMode.input = this.node.node.data.id.startsWith("from_data");
+      this.nodeMode.output = this.node.node.data.id.startsWith("to_data");
       this.nodeMode.node = this.node.node.data.id.startsWith("node/");
       this.nameOptions = [];
       this.selectedName = null;
