@@ -15,10 +15,7 @@ export default {
       Events.$emit("open-node-settings", this);
     },
     download() {
-      let type = this.node.data.id.slice("to_data/".length);
-      if (this.node.data.id.slice(0, 2) != "to") {
-        type = this.node.data.id.slice("from_data/".length);
-      }
+      let type = this.node.data.type;
       Api.post("create_download", {
         name: this.node.data.data_name,
         type: type
@@ -43,24 +40,24 @@ export default {
         this.dataNode = this.node;
       }
     } else {
-      if (this.node.data.id.startsWith("from_data/")) {
+      if (this.node.name.startsWith("from_data")) {
         Events.$on("node-filter/inputs", v => {
           this.buttonFilteredOut = !v;
         });
       }
-      if (this.node.data.id.startsWith("to_data/")) {
+      if (this.node.name.startsWith("to_data")) {
         Events.$on("node-filter/outputs", v => {
           this.buttonFilteredOut = !v;
         });
       }
-      if (this.node.data.id.startsWith("node/")) {
+      if (this.node.name.startsWith("node/")) {
         Events.$on("node-filter/nodes", v => {
           this.buttonFilteredOut = !v;
         });
       }
       Events.$on("node-filter/text", v => {
         this.textFilteredOut = false;
-        if (this.node.data.id.includes(v)) return;
+        if (this.node.name.includes(v)) return;
         try {
           this.node.inputs.forEach(i => {
             if (i.socket.name.includes(v)) throw "break";

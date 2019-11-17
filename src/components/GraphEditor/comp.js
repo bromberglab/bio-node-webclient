@@ -70,10 +70,13 @@ export default {
       Events.$emit("node-filter/nodes", this.buttons[2].state);
     },
     saveFlow() {
-      Api.post("workflow_storage", {
-        name: this.saveName,
-        data: this.editor.toJSON()
-      });
+      this.arrange();
+      setTimeout(() => {
+        Api.post("workflow_storage", {
+          name: this.saveName,
+          data: this.editor.toJSON()
+        });
+      }, 0);
     },
     runFlow() {
       Api.post("workflow_run", {
@@ -88,8 +91,10 @@ export default {
         name: this.saveName
       }).then(r => {
         this.editor.fromJSON(r.data);
+        setTimeout(() => {
+          this.arrange();
+        }, 0);
       });
-      this.arrange();
     },
     fetchTypes() {
       Api.get("file_types").then(r => {
@@ -134,7 +139,7 @@ export default {
             let out = new Rete.Output("o/" + 1, "-", inputSocket);
 
             node.addOutput(out);
-            node.data.id = node.data.id || "from_data";
+            node.data.type = node.data.type || "-";
             node.data.displayName = "Input";
             node.data.data_name = node.data.data_name || "<required>";
             node.isDataNode = true;
@@ -155,7 +160,6 @@ export default {
             let inp = new Rete.Input("i/" + 1, "-", outputSocket);
 
             node.addInput(inp);
-            node.data.id = node.data.id || "to_data";
             node.data.displayName = "Output";
             node.data.data_name = node.data.data_name || "<required>";
             node.isDataNode = true;
@@ -191,7 +195,6 @@ export default {
                   node.addOutput(new Rete.Output("o/" + ++j, v, sockets[v]));
                 });
 
-                node.data.id = "node/" + image.name;
                 node.data.displayName = image.name.split("/").slice(-1)[0];
               }
 

@@ -26,14 +26,14 @@ export default {
       this.jsonEditor = v;
     },
     render() {
-      this.nodeMode.input = this.node.node.data.id.startsWith("from_data");
-      this.nodeMode.output = this.node.node.data.id.startsWith("to_data");
-      this.nodeMode.node = this.node.node.data.id.startsWith("node/");
+      this.nodeMode.input = this.node.node.name.startsWith("from_data");
+      this.nodeMode.output = this.node.node.name.startsWith("to_data");
+      this.nodeMode.node = this.node.node.name.startsWith("node/");
       this.nameOptions = [];
       this.selectedName = null;
 
       if (this.nodeMode.input) {
-        const type = this.node.node.data.id.slice("from_data/".length);
+        const type = this.node.node.name.slice("from_data/".length);
         Api.get("names_for_type", { type }).then(r => {
           this.nameOptions = r.data;
           const name = this.node.node.data.data_name;

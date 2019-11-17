@@ -43,13 +43,16 @@ export default {
       if (this.validTypes.length == 1) {
         this.select(this.validTypes[0]);
       }
+      if (!this.validTypes.includes(this.selection)) {
+        this.selection = null;
+      }
     },
     clearList() {
       this.connected = false;
     },
     select(t) {
       this.selection = t;
-      this.node.name = this.node.name.split("/")[0] + "/" + t;
+      this.node.data.type = t;
     }
   },
   computed: {
@@ -68,5 +71,8 @@ export default {
 .host {
   display: inline-block;
   margin: 0 1em;
+  .dropdown {
+    display: flex;
+  }
 }
 </style>
