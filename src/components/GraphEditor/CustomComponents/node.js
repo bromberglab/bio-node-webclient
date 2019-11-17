@@ -1,7 +1,7 @@
 import mixin from "rete-vue-render-plugin/src/mixin";
 import Socket from "./socket.vue";
 import DatasetDropdown from "./dataset-dropdown.vue";
-import Events from "src/events.js";
+import Events from "src/events";
 import Api from "src/services/api";
 
 export default {

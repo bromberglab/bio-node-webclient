@@ -1,13 +1,13 @@
-const config = require("src/config");
+import Config from "src/config";
 const uuid4 = require("uuid/v4");
-import Events from "src/events.js";
+import Events from "src/events";
 
 export default {
   data() {
     return {
       options: {
         // https://github.com/simple-uploader/Uploader/tree/develop/samples/Node.js
-        target: config.api_uri + "/upload/",
+        target: Config.apUri + "/upload/",
         uploadMethod: "PUT",
         testChunks: false,
         generateUniqueIdentifier: () => {

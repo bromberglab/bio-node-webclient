@@ -6,9 +6,10 @@ import DockPlugin from "rete-dock-plugin";
 import CustomNodeComponent from "./CustomComponents/node.vue";
 import NodeSettings from "../NodeSettings/comp.vue";
 import Api from "src/services/api";
+import Config from "src/config";
 import Notifications from "src/services/notifications";
 import Types from "src/services/types";
-import Events from "src/events.js";
+import Events from "src/events";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AutoArrangePlugin from "rete-auto-arrange-plugin";
 import AreaPlugin from "rete-area-plugin";
@@ -72,16 +73,19 @@ export default {
     saveFlow() {
       this.arrange();
       setTimeout(() => {
+        let data = this.editor.toJSON();
+        data.id = Config.reteVersion;
         Api.post("workflow_storage", {
           name: this.saveName,
-          data: this.editor.toJSON()
+          data
         });
       }, 0);
     },
     runFlow() {
+      let data = this.editor.toJSON();
       Api.post("workflow_run", {
         name: this.saveName,
-        data: this.editor.toJSON()
+        data
       }).then(() => {
         Events.$emit("run-all");
       });
@@ -90,7 +94,10 @@ export default {
       Api.get("workflow_storage", {
         name: this.saveName
       }).then(r => {
-        this.editor.fromJSON(r.data);
+        let data = r.data;
+        data = Api.legacySupport(data);
+
+        this.editor.fromJSON(data);
         setTimeout(() => {
           this.arrange();
         }, 0);
@@ -230,10 +237,10 @@ export default {
   mounted() {
     Events.$emit("start-loading");
     this.editor = new Rete.NodeEditor(
-      "demo@0.1.0",
+      Config.reteId,
       document.querySelector(".rete-editor .node-editor")
     );
-    this.engine = new Rete.Engine("demo@0.1.0");
+    this.engine = new Rete.Engine(Config.reteId);
 
     const renderOptions = {
       component: CustomNodeComponent

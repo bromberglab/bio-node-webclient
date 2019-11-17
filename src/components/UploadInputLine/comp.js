@@ -1,5 +1,5 @@
 const debounce = require("debounce");
-const config = require("src/config");
+import Config from "src/config";
 import Api from "src/services/api";
 
 const jobCounts = [
@@ -21,10 +21,10 @@ export default {
   methods: {
     updateName: debounce(function(value) {
       this.uploadName = value;
-    }, config.debounceDefault),
+    }, Config.debounceDefault),
     updateType: debounce(function(value) {
       this.fileType = value;
-    }, config.debounceDefault),
+    }, Config.debounceDefault),
     updateUpload(isFinished) {
       if (isFinished) return Api.post("finish_upload");
       return Api.post("my_upload", {

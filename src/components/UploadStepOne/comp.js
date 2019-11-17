@@ -1,8 +1,8 @@
-import Api from "src/services/api.js";
+import Api from "src/services/api";
 import Uploader from "../Uploader/comp.vue";
 import Tree from "../Tree/comp.vue";
 import UploadInputLine from "../UploadInputLine/comp.vue";
-import Events from "src/events.js";
+import Events from "src/events";
 
 export default {
   name: "app",

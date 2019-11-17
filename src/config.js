@@ -1,5 +1,9 @@
-module.exports = {
+export default {
   debounceDefault: 500,
-  api_uri:
-    process.env.NODE_ENV === "production" ? "/api" : "http://localhost:8000/api"
+  apiUri:
+    process.env.NODE_ENV === "production"
+      ? "/api"
+      : "http://localhost:8000/api",
+  reteId: "bio-node@1.0.0",
+  reteVersion: 1
 };
