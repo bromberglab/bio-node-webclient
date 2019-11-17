@@ -139,9 +139,9 @@ export default {
             let out = new Rete.Output("o/1", "-", inputSocket);
 
             node.addOutput(out);
-            node.data.type = node.data.type || "-";
+            node.data.type = node.data.type || null;
             node.data.displayName = "Input";
-            node.data.data_name = node.data.data_name || "-";
+            node.data.data_name = node.data.data_name || null;
             node.isDataNode = true;
           }
 
@@ -160,9 +160,9 @@ export default {
             let inp = new Rete.Input("i/" + 1, "-", outputSocket);
 
             node.addInput(inp);
-            node.data.type = node.data.type || "-";
+            node.data.type = node.data.type || null;
             node.data.displayName = "Output";
-            node.data.data_name = node.data.data_name || "-";
+            node.data.data_name = node.data.data_name || null;
             node.isDataNode = true;
           }
 

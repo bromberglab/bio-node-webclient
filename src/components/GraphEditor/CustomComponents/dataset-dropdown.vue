@@ -1,11 +1,6 @@
 <template>
-  <div class="host">
-    <b-dropdown
-      v-if="node"
-      :disabled="!connected"
-      :text="selectedType"
-      variant="light"
-    >
+  <div class="host" v-if="node" :class="{ output: !isInput }">
+    <b-dropdown :disabled="!connected" :text="selectedType" variant="light">
       <b-dropdown-item
         v-for="type in typeOptions"
         :value="type"
@@ -16,10 +11,11 @@
       </b-dropdown-item>
     </b-dropdown>
     <b-dropdown
-      v-if="connected && typeSelection"
+      v-if="connected && typeSelection && isInput"
       :disabled="!connected"
       :text="selectedName"
       variant="light"
+      class="name"
     >
       <b-dropdown-item
         v-for="name in nameOptions"
@@ -30,12 +26,23 @@
         {{ name }}
       </b-dropdown-item>
     </b-dropdown>
+
+    <b-input
+      v-if="connected && typeSelection && !isInput"
+      :value="selectedName"
+      placeholder="Dataset name"
+      class="name"
+      @input="nameChange"
+    ></b-input>
   </div>
 </template>
 
 <script>
 import Types from "src/services/types";
 import Api from "src/services/api";
+
+const debounce = require("debounce");
+
 export default {
   props: ["node"],
   data() {
@@ -53,7 +60,8 @@ export default {
     node(v) {
       if (!v) return;
       v.dropdown = this;
-      this.selectType(v.data.type);
+      v.data.type && this.selectType(v.data.type);
+      v.data.data_name && this.selectName(v.data.data_name);
     }
   },
   methods: {
@@ -64,7 +72,7 @@ export default {
       if (this.typeOptions.length == 1) {
         this.selectType(this.typeOptions[0]);
       }
-      if (!this.typeOptions.includes(this.typeSelection)) {
+      if (this.isInput && !this.typeOptions.includes(this.typeSelection)) {
         this.typeSelection = null;
       }
       this.rerender();
@@ -85,8 +93,8 @@ export default {
         this.nameOptions = r.data;
         const name = this.node.data.data_name;
 
-        if (r.data.find(v => v == name)) {
-          this.nameSelection = name;
+        if (!this.isInput || r.data.find(v => v == name)) {
+          this.selectName(name);
         } else {
           this.nameSelection = null;
         }
@@ -96,9 +104,12 @@ export default {
     rerender() {
       let node = this.node;
       setTimeout(() => {
-        this.editor.view.updateConnections({ node });
+        this.editor && this.editor.view.updateConnections({ node });
       }, 0);
-    }
+    },
+    nameChange: debounce(function(v) {
+      this.selectName(v);
+    }, 50)
   },
   computed: {
     selectedType() {
@@ -111,9 +122,12 @@ export default {
     selectedName() {
       if (!this.connected) return "Please connect";
       if (!this.nameSelection) return "Select Dataset …";
-      if (!this.nameOptions.length) return "Not available";
+      if (this.isInput && !this.nameOptions.length) return "Not available";
 
       return this.nameSelection;
+    },
+    isInput() {
+      return this.node.name.startsWith("from");
     }
   }
 };
@@ -124,8 +138,22 @@ export default {
 .host {
   display: inline-block;
   margin: 0 1em;
+  ::v-deep * {
+    color: #495057 !important;
+  }
   .dropdown {
+    ::v-deep * {
+      text-align: right;
+    }
     display: flex;
+  }
+  .name {
+    margin: 5px 0 0;
+  }
+  &.output {
+    ::v-deep * {
+      text-align: left;
+    }
   }
 }
 </style>
