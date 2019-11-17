@@ -120,7 +120,7 @@ export default {
         let socket = connection.input || connection.output;
         socket = other.inputs.get(socket) || other.outputs.get(socket);
 
-        node.dropdown.updateList(this.fileTypes, socket.name);
+        node.dropdown.updateList(this.fileTypes, socket.name, this.editor);
       } else {
         node.dropdown.clearList();
       }
@@ -136,12 +136,12 @@ export default {
           }
 
           builder(node) {
-            let out = new Rete.Output("o/" + 1, "-", inputSocket);
+            let out = new Rete.Output("o/1", "-", inputSocket);
 
             node.addOutput(out);
             node.data.type = node.data.type || "-";
             node.data.displayName = "Input";
-            node.data.data_name = node.data.data_name || "<required>";
+            node.data.data_name = node.data.data_name || "-";
             node.isDataNode = true;
           }
 
@@ -160,8 +160,9 @@ export default {
             let inp = new Rete.Input("i/" + 1, "-", outputSocket);
 
             node.addInput(inp);
+            node.data.type = node.data.type || "-";
             node.data.displayName = "Output";
-            node.data.data_name = node.data.data_name || "<required>";
+            node.data.data_name = node.data.data_name || "-";
             node.isDataNode = true;
           }
 
