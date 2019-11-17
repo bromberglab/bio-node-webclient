@@ -135,6 +135,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+$width: 160px;
 .host {
   display: inline-block;
   margin: 0 1em;
@@ -142,6 +143,7 @@ export default {
     color: #495057 !important;
   }
   .dropdown {
+    min-width: $width;
     ::v-deep * {
       text-align: right;
     }
@@ -154,6 +156,9 @@ export default {
     ::v-deep * {
       text-align: left;
     }
+  }
+  input {
+    width: $width;
   }
 }
 </style>
