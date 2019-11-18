@@ -7,7 +7,7 @@ export default {
     return {
       options: {
         // https://github.com/simple-uploader/Uploader/tree/develop/samples/Node.js
-        target: Config.apUri + "/upload/",
+        target: Config.apiUri + "/upload/",
         uploadMethod: "PUT",
         testChunks: false,
         generateUniqueIdentifier: () => {
