@@ -206,8 +206,8 @@ export default {
                 node.data.displayName = image.name.split("/").slice(-1)[0];
               }
 
-              worker(node, inputs, outputs) {
-                // TODO
+              worker() {
+                return;
               }
             }
           );
