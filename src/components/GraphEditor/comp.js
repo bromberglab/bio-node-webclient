@@ -9,6 +9,7 @@ import Api from "src/services/api";
 import Config from "src/config";
 import Notifications from "src/services/notifications";
 import Types from "src/services/types";
+import Store from "src/services/store";
 import Events from "src/events";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AutoArrangePlugin from "rete-auto-arrange-plugin";
@@ -218,6 +219,8 @@ export default {
           this.editor.register(numComponent);
         });
         Events.$emit("stop-loading");
+
+        this.restoreState();
       });
     },
     arrange() {
@@ -232,6 +235,22 @@ export default {
 
       withConnections.forEach(node => this.editor.trigger("arrange", { node }));
       AreaPlugin.zoomAt(this.editor);
+    },
+    storeState() {
+      Store.graphNodes = this.editor.toJSON();
+      Store.graphSave = this.saveName;
+      Store.graphFilter = this.filterText;
+      Store.graphButtons = this.buttons;
+    },
+    restoreState() {
+      Store.graphNodes && this.editor.fromJSON(Store.graphNodes);
+      Store.graphSave && (this.saveName = Store.graphSave);
+      Store.graphFilter && (this.filterText = Store.graphFilter);
+      Store.graphButtons && (this.buttons = Store.graphButtons);
+
+      setTimeout(() => {
+        this.filterButtonClicked();
+      }, 0);
     }
   },
   mounted() {
@@ -280,6 +299,9 @@ export default {
     this.editor.on("warn", e => {
       Notifications.warn("Workflow Editor:", e.message);
     });
+  },
+  beforeDestroy() {
+    this.storeState();
   },
   components: {
     NodeSettings
