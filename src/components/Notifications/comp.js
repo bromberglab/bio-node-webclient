@@ -1,11 +1,16 @@
 import Notifications from "src/services/notifications";
 import Api from "src/services/api";
+import Events from "src/services/events";
 import * as timeAgo from "timeago.js";
 
 export default {
   components: {},
   mounted() {
     this.load();
+
+    Events.$on("notification", () => {
+      this.load();
+    });
   },
   methods: {
     load() {
