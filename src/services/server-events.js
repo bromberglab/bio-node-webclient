@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Events from "src/events";
+import Events from "src/services/events";
 import Config from "src/config";
 
 export default {

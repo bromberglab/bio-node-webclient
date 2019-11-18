@@ -3,7 +3,7 @@ import GraphEditor from "../GraphEditor/comp.vue";
 import Notifications from "../Notifications/comp.vue";
 import NotificationPopup from "../NotificationPopup/comp.vue";
 import VueRouter from "vue-router";
-import Events from "src/events";
+import Events from "src/services/events";
 import Api from "src/services/api";
 import Auth from "src/services/auth";
 import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";

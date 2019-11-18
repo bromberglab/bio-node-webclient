@@ -10,7 +10,7 @@ import Config from "src/config";
 import Notifications from "src/services/notifications";
 import Types from "src/services/types";
 import Store from "src/services/store";
-import Events from "src/events";
+import Events from "src/services/events";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AutoArrangePlugin from "rete-auto-arrange-plugin";
 import AreaPlugin from "rete-area-plugin";

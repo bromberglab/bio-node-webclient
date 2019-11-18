@@ -1,4 +1,4 @@
-import Events from "src/events";
+import Events from "src/services/events";
 import Api from "src/services/api";
 const debounce = require("debounce");
 

@@ -1,6 +1,6 @@
 import Config from "src/config";
 const uuid4 = require("uuid/v4");
-import Events from "src/events";
+import Events from "src/services/events";
 
 export default {
   data() {

@@ -1,4 +1,4 @@
-import Events from "src/events";
+import Events from "src/services/events";
 import Notifications from "src/services/notifications";
 
 export default {
