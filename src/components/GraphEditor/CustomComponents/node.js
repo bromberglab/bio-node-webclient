@@ -20,7 +20,7 @@ export default {
         name: this.node.data.data_name,
         type: type
       }).then(r => {
-        window.open(r.data.url);
+        window.location.href = r.data.url;
       });
     }
   },
