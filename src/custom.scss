@@ -62,7 +62,7 @@ $node-color: desaturate(lighten($info, 10%), 20%);
 $socket-color: desaturate(darken($info, 4%), 20%);
 $node-border-color: transparent;
 $gear-color: desaturate(darken($info, 25%), 20%);
-$connection-color: desaturate(darken($yellow, 3%), 10%);
+$connection-color: desaturate(darken($warning, 3%), 10%);
 $secondary-node-color: desaturate(lighten($success, 10%), 25%);
 $secondary-socket-color: desaturate(darken($success, 4%), 25%);
 
