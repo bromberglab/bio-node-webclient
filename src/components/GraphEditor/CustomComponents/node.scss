@@ -2,7 +2,7 @@
 
 .node {
   background: $node-color;
-  border: ($ratio * 2em) solid #4e58bf;
+  border: ($ratio * 2em) solid $node-border-color;
   border-radius: ($ratio * 10em);
   cursor: pointer;
   min-width: $node-width;
@@ -15,7 +15,7 @@
     background: darken($node-color, 4%);
   }
   .title {
-    color: white;
+    color: $white;
     font-family: sans-serif;
     font-size: 1.25em;
     padding: ($ratio * 8em);
@@ -29,7 +29,7 @@
   .input-title,
   .output-title {
     vertical-align: middle;
-    color: white;
+    color: $white;
     display: inline-block;
     font-family: sans-serif;
     font-size: 0.9em;
@@ -51,11 +51,11 @@
     right: 0;
     transform: translate(40%, -40%);
     font-size: 1.8em;
-    color: $palette-1-hex;
+    color: $gear-color;
   }
 
   .download {
-    color: #eee;
+    color: $gray-100;
     margin: 0 0.5em;
   }
 }

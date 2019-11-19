@@ -74,13 +74,14 @@ $palette-5-hsla: hsla(90, 27, 84, 1);
 
 $node-color: $palette-3-hex;
 $socket-color: $palette-2-hex;
+$node-border-color: #4e58bf;
+$gear-color: $palette-1-hex;
 
 $ratio: 1 / 16;
 $group-handler-size: $ratio * 40em;
 $group-handler-offset: $ratio * -10em;
 $socket-size: $ratio * 24em;
 $socket-margin: $ratio * 6em;
-$socket-color: #96b38a;
 $node-width: $ratio * 180em;
 
 @import "~bootstrap";
