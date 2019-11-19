@@ -63,8 +63,8 @@ $socket-color: desaturate(darken($info, 4%), 20%);
 $node-border-color: transparent;
 $gear-color: desaturate(darken($info, 25%), 20%);
 $connection-color: desaturate(darken($yellow, 3%), 10%);
-$secondary-node-color: $node-color;
-$secondary-socket-color: $socket-color;
+$secondary-node-color: desaturate(lighten($success, 10%), 25%);
+$secondary-socket-color: desaturate(darken($success, 4%), 25%);
 
 $ratio: 1 / 16;
 $group-handler-size: $ratio * 40em;

@@ -26,5 +26,8 @@
   }
   .node.secondary & {
     background-color: $secondary-socket-color;
+    &:hover {
+      background: darken($secondary-socket-color, 6%);
+    }
   }
 }

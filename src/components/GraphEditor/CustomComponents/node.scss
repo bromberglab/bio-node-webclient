@@ -2,9 +2,6 @@
 
 .node {
   background: $node-color;
-  &.secondary {
-    background: $secondary-node-color;
-  }
 
   border: ($ratio * 2em) solid $node-border-color;
   border-radius: ($ratio * 10em);
@@ -20,6 +17,15 @@
   }
   &.selected {
     background: lighten($node-color, 3%);
+  }
+  &.secondary {
+    background: $secondary-node-color;
+    &:hover {
+      background: darken($secondary-node-color, 3%);
+    }
+    &.selected {
+      background: lighten($secondary-node-color, 3%);
+    }
   }
 
   .title {
