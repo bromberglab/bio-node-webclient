@@ -1,3 +1,5 @@
+@import "src/../node_modules/rete-vue-render-plugin/src/vars";
+
 // Base grayscale colors definitions
 $white: #fff !default;
 $gray-100: #f8f9fa !default;
@@ -49,6 +51,37 @@ $theme-colors: map-merge(
   $theme-colors
 );
 
+/* Color Theme Swatches in Hex */
+$palette-1-hex: #23252b;
+$palette-2-hex: #006c7a;
+$palette-3-hex: #40aca9;
+$palette-4-hex: #7ddfb5;
+$palette-5-hex: #d7e2cc;
+
+/* Color Theme Swatches in RGBA */
+$palette-1-rgba: rgba(35, 37, 43, 1);
+$palette-2-rgba: rgba(0, 108, 122, 1);
+$palette-3-rgba: rgba(64, 172, 169, 1);
+$palette-4-rgba: rgba(125, 223, 181, 1);
+$palette-5-rgba: rgba(215, 226, 204, 1);
+
+/* Color Theme Swatches in HSLA */
+$palette-1-hsla: hsla(225, 10, 15, 1);
+$palette-2-hsla: hsla(186, 100, 23, 1);
+$palette-3-hsla: hsla(178, 45, 46, 1);
+$palette-4-hsla: hsla(154, 60, 68, 1);
+$palette-5-hsla: hsla(90, 27, 84, 1);
+
+$node-color: $palette-3-hex;
+$socket-color: $palette-2-hex;
+
+$ratio: 1 / 16;
+$group-handler-size: $ratio * 40em;
+$group-handler-offset: $ratio * -10em;
+$socket-size: $ratio * 24em;
+$socket-margin: $ratio * 6em;
+$socket-color: #96b38a;
+$node-width: $ratio * 180em;
+
 @import "~bootstrap";
 @import "~bootstrap-vue";
-@import "src/globals";
