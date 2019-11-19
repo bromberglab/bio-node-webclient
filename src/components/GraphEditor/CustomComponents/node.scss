@@ -2,6 +2,10 @@
 
 .node {
   background: $node-color;
+  &.secondary {
+    background: $secondary-node-color;
+  }
+
   border: ($ratio * 2em) solid $node-border-color;
   border-radius: ($ratio * 10em);
   cursor: pointer;
@@ -12,8 +16,12 @@
   position: relative;
   user-select: none;
   &:hover {
-    background: darken($node-color, 4%);
+    background: darken($node-color, 3%);
   }
+  &.selected {
+    background: lighten($node-color, 3%);
+  }
+
   .title {
     color: $white;
     font-family: sans-serif;

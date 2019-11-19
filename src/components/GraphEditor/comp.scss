@@ -38,34 +38,29 @@
       height: 100%;
       .connection {
         path {
-          stroke: $palette-5-hex;
+          stroke: $connection-color;
         }
-      }
-    }
-  }
-  .dock,
-  .node-editor {
-    .node {
-      border-color: transparent;
-      &.selected {
-        opacity: 0.9;
       }
     }
   }
 
   position: relative;
   .save-load {
-    text-align: right;
     position: absolute;
+    display: flex;
+    text-align: right;
     top: 5px;
     right: 5px;
     width: 50%;
-    max-width: 350px;
+    max-width: 450px;
     * {
       text-align: left;
     }
     & > .btn {
-      margin-top: 5px;
+      margin-left: 5px;
+    }
+    .input-group {
+      display: inline-flex;
     }
   }
 
@@ -83,6 +78,9 @@
     .btn:hover {
       background-color: initial;
       color: var(--primary);
+    }
+    .btn {
+      visibility: hidden;
     }
   }
 

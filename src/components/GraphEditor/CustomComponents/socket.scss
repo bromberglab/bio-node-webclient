@@ -13,7 +13,7 @@
   z-index: 2;
   box-sizing: border-box;
   &:hover {
-    border-width: 4px;
+    background: darken($socket-color, 6%);
   }
   &.multiple {
     border-color: yellow;
@@ -23,5 +23,8 @@
   }
   &.input {
     margin-left: -$socket-size / 2;
+  }
+  .node.secondary & {
+    background-color: $secondary-socket-color;
   }
 }
