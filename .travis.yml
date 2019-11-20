@@ -28,6 +28,8 @@ install:
   - docker push $REGISTRY/$IMAGENAME
   - sleep 1
   - kubectl apply -f kubectl.yml
+  - kubectl wait --for=condition=complete --timeout=30s job/client-copy
+  - kubectl delete -f kubectl.yml
 script:
   - echo "done"
 
