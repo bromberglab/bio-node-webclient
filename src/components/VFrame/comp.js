@@ -1,6 +1,8 @@
 export default {
   methods: {
     loaded() {
+      if (this.basePath) return;
+
       let path = this.$el.children[0].contentWindow.location.href;
       if (this.dPath && path.endsWith(this.dPath)) {
         path = path.slice(0, -this.dPath.length);
