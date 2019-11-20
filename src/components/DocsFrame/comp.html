@@ -1,3 +1,8 @@
 <div class="host">
-  <vFrame :src="'/docs/' + path"></vFrame>
+  <VFrame
+    @path-changed="changed"
+    v-if="path !== null"
+    prefix="/docs"
+    :path="path"
+  ></VFrame>
 </div>
