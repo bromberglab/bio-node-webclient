@@ -23,9 +23,8 @@ before_install:
 install:
   - yarn install --frozen-lockfile
   - yarn build
-  - docker build . -t $IMAGENAME
-  - docker tag $IMAGENAME $REGISTRY/$IMAGENAME
-  - docker push $REGISTRY/$IMAGENAME
+  - docker build . -t gcr.io/poised-cortex-254814/webservice-client
+  - docker push gcr.io/poised-cortex-254814/webservice-client
   - sleep 1
   - kubectl apply -f kubectl.yml
   - kubectl wait --for=condition=complete --timeout=30s job/client-copy
