@@ -3,18 +3,33 @@ import GraphEditor from "../GraphEditor/comp.vue";
 import Notifications from "../Notifications/comp.vue";
 import NotificationPopup from "../NotificationPopup/comp.vue";
 import AdminFrame from "../AdminFrame/comp.vue";
+import DocsFrame from "../DocsFrame/comp.vue";
 import VueRouter from "vue-router";
 import Events from "src/services/events";
 import Api from "src/services/api";
 import Auth from "src/services/auth";
 import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 
-const routes = [
-  { path: "editor", component: GraphEditor },
-  { path: "upload", component: UploadPage },
-  { path: "notifications", component: Notifications },
-  { path: "admin", component: AdminFrame }
+let routes = [
+  [GraphEditor, "Editor"],
+  [UploadPage, "Upload"],
+  [Notifications, "Notifications"],
+  [AdminFrame, "Admin"],
+  [DocsFrame, "Docs"]
 ];
+
+routes = routes.map(r => {
+  return {
+    path: r[1].toLowerCase().replace(" ", "-"),
+    component: r[0],
+    title: r[1],
+    children: [
+      {
+        path: ":path(.*)"
+      }
+    ]
+  };
+});
 
 const Full = {
   render(createElement) {
@@ -57,7 +72,8 @@ export default {
     return {
       loading: 0,
       dragActive: false,
-      showCookieInfo: false
+      showCookieInfo: false,
+      routes
     };
   },
   watch: {
