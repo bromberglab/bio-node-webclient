@@ -27,7 +27,7 @@ install:
   - docker tag $IMAGENAME $REGISTRY/$IMAGENAME
   - docker push $REGISTRY/$IMAGENAME
   - sleep 1
-  - kubectl delete pod -l "app=server"
+  - kubectl apply -f kubectl.yml
 script:
   - echo "done"
 
