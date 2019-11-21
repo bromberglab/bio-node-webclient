@@ -95,7 +95,7 @@ export default {
   mounted() {
     Api.get("check_auth").then(response => {
       if (response.data.logged_in !== true) {
-        window.location.href = "/";
+        window.location.href = "/api";
       } else {
         Auth.userId = response.data.user;
       }
