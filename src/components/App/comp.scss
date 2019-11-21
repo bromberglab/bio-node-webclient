@@ -1,3 +1,5 @@
+@import "src/custom";
+
 html,
 body,
 .full-height {
@@ -22,6 +24,9 @@ body,
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 10000;
+  .v-scale {
+    background-color: $green !important;
+  }
 }
 
 :focus {
