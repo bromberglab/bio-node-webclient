@@ -13,6 +13,7 @@ export default {
   },
   mounted() {
     this.dPath = this.path || "";
+    this.dPath = this.dPath.replace(":", "#");
     this.dPrefix = this.prefix || "";
     if (this.dPath.startsWith("/")) this.dPath = this.dPath.slice(1);
     if (!this.dPrefix.endsWith("/")) this.dPrefix += "/";
@@ -30,7 +31,7 @@ export default {
       if (this.copyPath !== path) {
         this.copyPath = path;
         if (path.startsWith("/")) path = path.slice(1);
-        this.$emit("path-changed", path);
+        this.$emit("path-changed", path.replace("#", ":"));
       }
     }, 1000);
 
