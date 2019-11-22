@@ -11,6 +11,7 @@
     <router-link
       :to="'/' + r.path"
       v-for="r in routes"
+      :key="r.path"
       v-slot="{ href, route, navigate, isActive, isExactActive }"
     >
       <a :class="{isActive, 'nav-link': 1}" :href="href" @click="navigate">

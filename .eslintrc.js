@@ -7,10 +7,7 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-unused-vars": [
-      process.env.NODE_ENV === "production" ? "error" : "warn",
-      { argsIgnorePattern: "^_+$" }
-    ]
+    "no-unused-vars": ["warn", { argsIgnorePattern: "^_+$" }]
   },
   parserOptions: {
     parser: "babel-eslint"
