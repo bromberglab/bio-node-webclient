@@ -90,11 +90,11 @@ export default {
     Events.$on("stop-drag", () => {
       this.dragActive = false;
     });
+    if (!Auth.authenticated) {
+      this.routes.splice(0, 4);
+    }
   },
   mounted() {
-    if (!Auth.authenticated) {
-      window.location.href = "/api";
-    }
     Api.get("show_cookie_info").then(response => {
       if (response.data === true) {
         this.showCookieInfo = true;

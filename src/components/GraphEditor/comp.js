@@ -11,6 +11,7 @@ import Notifications from "src/services/notifications";
 import Types from "src/services/types";
 import Store from "src/services/store";
 import Events from "src/services/events";
+import Auth from "src/services/auth";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AutoArrangePlugin from "rete-auto-arrange-plugin";
 import AreaPlugin from "rete-area-plugin";
@@ -253,6 +254,7 @@ export default {
     }
   },
   mounted() {
+    if (!Auth.authenticated) return this.$router.push("docs");
     Events.$emit("start-loading");
     this.editor = new Rete.NodeEditor(
       Config.reteId,
