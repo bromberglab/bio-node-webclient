@@ -5,7 +5,6 @@ import UploadInputLine from "../UploadInputLine/comp.vue";
 import Events from "src/services/events";
 
 export default {
-  name: "app",
   components: {
     Uploader,
     Tree,

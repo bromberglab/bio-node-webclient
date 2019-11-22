@@ -40,7 +40,6 @@ class CustomSocket extends Rete.Socket {
 }
 
 export default {
-  name: "GraphEditor",
   props: {
     msg: String
   },
