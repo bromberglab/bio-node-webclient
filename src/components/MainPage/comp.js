@@ -73,6 +73,7 @@ export default {
       loading: 0,
       dragActive: false,
       showCookieInfo: false,
+      sidebarOpen: false,
       routes
     };
   },

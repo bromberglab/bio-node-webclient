@@ -1,7 +1,13 @@
 <div id="app" class="full-height" @dragenter="dragOn" @dragleave="dragOff">
   <vue-spinner :loading="loading > 0" class="main-spinner"></vue-spinner>
+  <div class="slide-overlay" :class="{sidebarOpen}"></div>
   <router-view id="page-wrap"></router-view>
-  <Slide :noOverlay="true">
+  <Slide
+    :noOverlay="true"
+    @openMenu="sidebarOpen = true"
+    @closeMenu="sidebarOpen = false"
+    class="sidebar"
+  >
     <router-link
       :to="'/' + r.path"
       v-for="r in routes"
