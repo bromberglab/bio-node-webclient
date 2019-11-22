@@ -59,3 +59,14 @@ body,
     transform: translateY(100%);
   }
 }
+
+.nav-link {
+  color: darken($white, 20%);
+  &.isActive {
+    color: darken($white, 10%);
+    font-weight: 700;
+  }
+  &:hover {
+    color: darken($white, 0%);
+  }
+}

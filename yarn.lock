@@ -8600,6 +8600,13 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
 
+vue-burger-menu@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/vue-burger-menu/-/vue-burger-menu-2.0.3.tgz#967e9588e958e8d6945d27d1409fa7e7a773753f"
+  integrity sha512-7HCCxxnorxI9W+qe/a7MR6Bco66kcIvHziUSEaY98OkGJj+3xmNesJMHTA84BLiv5P8JmM4ZrqtrUh0UecDuXg==
+  dependencies:
+    vue "^2.5.17"
+
 vue-eslint-parser@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-5.0.0.tgz#00f4e4da94ec974b821a26ff0ed0f7a78402b8a1"

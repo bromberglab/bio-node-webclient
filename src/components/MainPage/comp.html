@@ -1,21 +1,17 @@
 <div id="app" class="full-height" @dragenter="dragOn" @dragleave="dragOff">
   <vue-spinner :loading="loading > 0" class="main-spinner"></vue-spinner>
-  <b-card no-body border-variant="transparent" class="full-height">
-    <b-card-header header-tag="nav">
-      <b-nav card-header tabs>
-        <b-nav-item
-          v-for="route in routes"
-          :to="'/' + route.path"
-          active-class="active"
-          >{{ route.title }}</b-nav-item
-        >
-      </b-nav>
-    </b-card-header>
-
-    <b-card-body class="text-center full-height">
-      <router-view></router-view>
-    </b-card-body>
-  </b-card>
+  <router-view id="page-wrap"></router-view>
+  <Slide :noOverlay="true">
+    <router-link
+      :to="'/' + r.path"
+      v-for="r in routes"
+      v-slot="{ href, route, navigate, isActive, isExactActive }"
+    >
+      <a :class="{isActive, 'nav-link': 1}" :href="href" @click="navigate">
+        {{ r.title }}
+      </a>
+    </router-link>
+  </Slide>
   <div class="cookie-info" :class="{ 'hide-below': !showCookieInfo }">
     <div class="cookie-info-wrap">
       We are not tracking you, but this website does use cookies.

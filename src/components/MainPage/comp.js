@@ -9,6 +9,7 @@ import Events from "src/services/events";
 import Api from "src/services/api";
 import Auth from "src/services/auth";
 import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
+import { Slide } from "vue-burger-menu";
 
 let routes = [
   [GraphEditor, "Editor"],
@@ -105,6 +106,7 @@ export default {
   },
   components: {
     "vue-spinner": ScaleLoader,
-    NotificationPopup
+    NotificationPopup,
+    Slide
   }
 };
