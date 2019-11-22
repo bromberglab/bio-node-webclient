@@ -92,6 +92,8 @@ export default {
     });
     if (!Auth.authenticated) {
       this.routes.splice(0, 4);
+    } else if (!Auth.staff) {
+      this.routes.splice(3, 1);
     }
   },
   mounted() {
