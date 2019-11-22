@@ -1,8 +1,11 @@
 <div class="host">
   <VFrame
     @path-changed="changed"
-    v-if="path !== null"
+    v-if="prod && path !== null"
     prefix="/api/admin"
     :path="path"
   ></VFrame>
+  <div v-if="!prod">
+    Frames disabled in debug mode.
+  </div>
 </div>

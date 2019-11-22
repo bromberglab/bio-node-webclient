@@ -1,5 +1,6 @@
 export default {
   debounceDefault: 500,
+  prod: process.env.NODE_ENV === "production",
   apiUri:
     process.env.NODE_ENV === "production"
       ? "/api/v1"

@@ -1,4 +1,6 @@
 import VFrame from "../VFrame/comp.vue";
+import Config from "src/config";
+
 export default {
   components: { VFrame },
   methods: {
@@ -14,7 +16,8 @@ export default {
   },
   data() {
     return {
-      path: null
+      path: null,
+      prod: Config.prod
     };
   }
 };

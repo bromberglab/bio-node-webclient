@@ -17,7 +17,6 @@ import AutoArrangePlugin from "rete-auto-arrange-plugin";
 import AreaPlugin from "rete-area-plugin";
 
 const debounce = require("debounce");
-const uuid = require("uuid/v4");
 const mutex = new Mutex();
 
 class CustomSocket extends Rete.Socket {
@@ -272,7 +271,7 @@ export default {
       plugins: [[VueRenderPlugin, renderOptions]]
     });
     this.editor.use(ContextMenuPlugin, {
-      allocate(component) {
+      allocate() {
         return null;
       },
       searchBar: false, // true by default
