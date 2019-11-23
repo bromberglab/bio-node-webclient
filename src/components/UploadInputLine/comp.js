@@ -33,8 +33,21 @@ export default {
         name: this.uploadName
       });
     },
-    finishUpload() {
-      this.updateUpload(true).then(r => {
+    doExtract(choice) {
+      this.finishUpload({
+        extract: choice
+      });
+    },
+    handleExtract() {
+      this.$bvModal.show("extract-modal");
+    },
+    finishUpload(payload) {
+      payload = payload || {};
+      Api.post("finish_upload", payload).then(r => {
+        if (r.data.error === "extract") {
+          return this.handleExtract();
+        }
+
         this.$emit("continue", r.data);
       });
     }

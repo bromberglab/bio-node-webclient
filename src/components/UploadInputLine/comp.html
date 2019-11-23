@@ -1,4 +1,16 @@
 <div>
+  <b-modal
+    id="extract-modal"
+    title="Upload"
+    ok-title="Yes"
+    cancel-title="No"
+    @ok="doExtract(true)"
+    @cancel="doExtract(false)"
+  >
+    <p class="my-4">
+      Your upload contains archives. Do you want to extract them?
+    </p>
+  </b-modal>
   <b-input-group class="type" prepend="Upload Name:">
     <b-form-input
       type="text"
