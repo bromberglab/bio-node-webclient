@@ -18,7 +18,7 @@ jobs:
           yarn install --frozen-lockfile;
           yarn build;
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.18
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: bromberglab/bio-node-webclient
           username: ${{ secrets.DOCKER_USERNAME }}
